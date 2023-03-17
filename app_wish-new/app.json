@@ -1,0 +1,35 @@
+{
+  "expo": {
+    "name": "getwish",
+    "slug": "getwish",
+    "version": "1.0.0",
+    "jsEngine": "hermes",
+    "orientation": "portrait",
+    "icon": "./src/assets/icon.png",
+    "splash": {
+      "image": "./src/assets/images/auth/background.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./src/assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.wish_list"
+    },
+    "web": {
+      "favicon": "./src/assets/favicon.png"
+    },
+    "ios": {
+      "bundleIdentifier": "com.mediapark.getwish",
+      "jsEngine": "jsc"
+    }
+  }
+}
