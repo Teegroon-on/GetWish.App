@@ -14,6 +14,7 @@ import AuthButton from '../Shared/AuthButton';
 import {acceptFriendProfile, cancelRequest, deleteFriend, sendRequest} from '../../redux/actions/userActions';
 import {useI18n} from "../../i18n/i18n";
 import {declOfNum} from "../../functions/helpers";
+import {Alert} from "react-native";
 
 function TopPanel() {
   const { oneUser } = useSelector((state) => state.user);
@@ -35,6 +36,20 @@ function TopPanel() {
         await deleteFriend(oneUser?.id);
       }
     });
+  };
+
+
+  const sendMessageButton = () => {
+    const alertTitle = t('alertTitle');
+    const alertMessage = t('alertMessage');
+    Alert.alert(
+        alertTitle,
+        alertMessage,
+          [
+            { text: 'OK'}
+          ],
+          { cancelable: false }
+      );
   };
 
   const cancelSendRequest = () => {
@@ -157,6 +172,7 @@ function TopPanel() {
             }}
             variant="small"
             text={t('profile_sendMessage')}
+            onPress={sendMessageButton}
           />
         </Box>
 

@@ -32,6 +32,8 @@
     "deleteAccount": "Удалить аккаунт",
     "sendMessage": "Отправить сообщение",
     "anonymously": "Анонимно",
+    "alertTitle": "Внимание!",
+    "alertMessage": "Данный функционал находится в разработке!",
     "notFound": "Ничего не найдено :(",
     "nothingHere": "Здесь пока пусто",
     "nothingHereInfo": "Хотя, возможно, там кот...",

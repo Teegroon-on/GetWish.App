@@ -10,11 +10,14 @@ import { cancelRequest, sendRequest } from '../../../redux/actions/userActions';
 import { userCRUD } from '../../../http/CRUD';
 import { changeUserInfo } from '../../../redux/actions/authActions';
 import { goToUserProfile, toastConfig } from '../../../functions/helpers';
+import {Alert} from "react-native";
+import {useI18n} from "../../../i18n/i18n";
 
 function ListFriendElement({
   data, add, handleSearchPanel, handlePress, first = false
 }) {
   const { search } = useSelector((state) => state.user);
+    const t = useI18n();
 
   const handleGoToUser = async (item) => {
     const user = await userCRUD.get(item?.id);
@@ -27,6 +30,20 @@ function ListFriendElement({
       await goToUserProfile({ noSearch: true });
     }
   };
+
+  const handleMessageError = () => {
+      const alertTitle = t('alertTitle');
+      const alertMessage = t('alertMessage');
+      Alert.alert(
+          alertTitle,
+          alertMessage,
+          [
+              { text: 'OK'}
+          ],
+          { cancelable: false }
+      );
+  }
+
   return (
     <FlatList
       style={{
@@ -81,7 +98,7 @@ function ListFriendElement({
                 width="30px"
                 height="30px"
                 marginLeft="auto"
-                onPress={() => handlePress(item)}
+                onPress={handleMessageError}
               >
                 <Image
                   resizeMode="contain"
