@@ -5,13 +5,13 @@ import {
 import { COLORS } from '../../functions/constants';
 import { goToAddWishList } from '../../functions/helpers';
 import { setWishId } from '../../redux/actions/wishActions';
-import {useI18n} from "../../i18n/i18n";
+import { useI18n } from '../../i18n/i18n';
 
 function ChoseWishActionsheet({
   open, handleClose, active, setActive, data
 }) {
 
-  const t = useI18n()
+  const t = useI18n();
 
   const handleChangeActive = (id) => {
     if (active !== id) {

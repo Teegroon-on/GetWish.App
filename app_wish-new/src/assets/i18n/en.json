@@ -88,7 +88,9 @@
     "share_sendSeparately": "Send separately",
     "desires_reservedDesires": "Reserved desires",
     "desires_desirePlurals": [
-      "desire", "desires", "desires"
+      "desire",
+      "desires",
+      "desires"
     ],
     "desires_reservedDesiresInfo": "",
     "desires_toWishList": "to Wishlist",
@@ -105,7 +107,6 @@
     "desires_confirmCancelReservedWishSubtitle": "",
     "desires_confirmCancelReservedWishYes": "Yes",
     "desires_confirmCancelReservedWishNo": "Oops, no",
-
     "wishlists": "Wishlists",
     "wishlists_archived": "Archived",
     "wishlists_create_new": "Create wishlist",
@@ -118,7 +119,6 @@
     "wishlists_add_wish": "Add wish",
     "wishlists_archiveList": "Send wishlist to archive?",
     "wishlists_archiveListInfo": "",
-
     "friends": "Friends",
     "friends_queriesTab": "Queries",
     "friends_requestsTab": "Requests",
@@ -131,8 +131,16 @@
     "friends_searchGlobal": "",
     "friends_searchPlaceholder": "",
     "friends_searchInfo": "",
-    "friends_requestPlurals": ["request", "requests", "requests"],
-    "friend_plurals": ["friend", "friends", "friends"],
+    "friends_requestPlurals": [
+      "request",
+      "requests",
+      "requests"
+    ],
+    "friend_plurals": [
+      "friend",
+      "friends",
+      "friends"
+    ],
     "friends_callFriends": "",
     "friends_requestAccepted": "",
     "friends_requestCanceled": "",
@@ -143,7 +151,6 @@
     "friends_delete_friend": "",
     "friends_delete_info_private": "",
     "friends_delete_info_public": "",
-
     "groups": "Groups"
   }
 }

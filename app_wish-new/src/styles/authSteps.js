@@ -75,6 +75,7 @@ export const PhoneContainer = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
+  font-size: 20px;
 `;
 
 export const PhonePrefix = styled.Text`

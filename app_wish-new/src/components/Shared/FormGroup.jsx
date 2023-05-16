@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Platform, Pressable } from 'react-native';
 import moment from 'moment';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   FormGroupButtonText,
   FormGroupContainer,
@@ -16,7 +16,7 @@ import CalendarShared from '../Calendar/Calendar';
 import { navigateAction } from '../../functions/NavigationService';
 import { COLORS } from '../../functions/constants';
 import { userCRUD } from '../../http/CRUD';
-import { changeUserInfo } from '../../redux/actions/authActions';
+import { changeUserInfo, logout } from '../../redux/actions/authActions';
 import {useI18n} from "../../i18n/i18n";
 
 function FormGroup({ forms, last = false }) {
@@ -24,6 +24,7 @@ function FormGroup({ forms, last = false }) {
   const { userInfo } = useSelector((state) => state.user);
   const [date, setDate] = React.useState(new Date());
   const [privateMode, setPrivateMode] = React.useState(userInfo?.private);
+  const dispatch = useDispatch();
 
   const renderLine = () => {
     return (
@@ -61,6 +62,30 @@ function FormGroup({ forms, last = false }) {
       case 'select': {
         const goToAction = () => {
           navigateAction(link.name, link.params);
+        };
+        return (
+          <>
+            <FormGroupElement>
+              <FormGroupText>{name}</FormGroupText>
+              <FormGroupSelect>
+                <Pressable
+                  style={{ paddingRight: 12 }}
+                  onPress={goToAction}
+                >
+                  <FormGroupSelectText>{value}</FormGroupSelectText>
+                </Pressable>
+                <Icon handlePressIcon={goToAction} source={require('../../assets/images/icons/profile/arrow.png')} />
+              </FormGroupSelect>
+
+            </FormGroupElement>
+            {!lastElement && renderLine()}
+          </>
+        );
+      }
+      case 'button': {
+        const goToAction = async () => {
+          await dispatch(logout());
+          navigation.navigate('AuthNavigator', { screen: 'Auth' });
         };
         return (
           <>

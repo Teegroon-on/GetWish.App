@@ -7,12 +7,14 @@ import {SET_AUTH, SET_FRIENDS, SET_NICKNAME, SET_USER_INFO} from '../../redux/co
 import MainRouter from './MainRouter';
 import AuthRouter from './AuthRouter';
 import NavigationService from '../../functions/NavigationService';
-import {getFriends} from "../../redux/actions/userActions";
+import { getFriends } from '../../redux/actions/userActions';
+import { useI18n } from '../../i18n/i18n';
 
 function AppRouter() {
   const { isAuth } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [loading, setLoading] = React.useState(false);
+  const t = useI18n();
 
   React.useEffect(() => {
     (async function Start() {
@@ -34,12 +36,12 @@ function AppRouter() {
   }, []);
 
   if (loading) {
-    return <Text>Загрузка</Text>;
+    return <Text>{t('loading')}</Text>;
   }
 
   return (
     <>
-      {isAuth && <MainRouter screenProps={{ nextStart: 'Main' }} />}
+      {isAuth && <MainRouter screenProps={{ nextStart: 'UserPost' }} />}
       {!isAuth && (
       <AuthRouter ref={(navigatorRef) => {
         NavigationService.setTopLevelNavigator(navigatorRef);

@@ -69,7 +69,7 @@ function EnterNicknameStep() {
             await changeUserInfo('userInfo', response?.data);
           });
           dispatch({ type: SET_AUTH, payload: true });
-          navigation.navigate('MainNavigator', { screen: 'Main' });
+          navigation.navigate('MainNavigator', { screen: 'Posts' });
         }
       }).catch(() => {
         timeout = setTimeout(onHandleRegistration, 10000);

@@ -14,11 +14,12 @@ import {NavigationActions as navigation} from "react-navigation";
 
 function EnterNumberStep({ isChangePhone }) {
   const { data, onNextStep } = useContext(AuthContext);
-
+  console.log(data);
   const onPressNumberStep = async () => {
     const phoneNumber = data.phoneNumber.split(' ').join('');
     if (phoneNumber.length >= 10) {
-      await sendCode(`+7${phoneNumber}`);
+      console.log(`${data.countryCode}${phoneNumber}`);
+      await sendCode(`${data.countryCode}${phoneNumber}`);
       onNextStep();
     }
   };

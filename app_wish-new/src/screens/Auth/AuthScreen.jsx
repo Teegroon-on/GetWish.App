@@ -22,7 +22,8 @@ function AuthScreen(props) {
     id: '',
     phoneNumber: '',
     codes: '',
-    username: ''
+    username: '',
+    countryCode: '',
   });
 
   const Step = StepsComponents[step];
