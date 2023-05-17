@@ -9,11 +9,11 @@ import {getIncoming} from "../redux/actions/userActions";
 const { dispatch } = store;
 
 const $host = axios.create({
-  baseURL: 'http://195.24.67.42'
+  baseURL: 'https://wish.dev39.ru'
 });
 
 const $authHost = axios.create({
-  baseURL: 'http://195.24.67.42'
+  baseURL: 'https://wish.dev39.ru'
 });
 
 const authIntterceptor = async (config) => {
