@@ -16,15 +16,16 @@ import CalendarShared from '../Calendar/Calendar';
 import { navigateAction } from '../../functions/NavigationService';
 import { COLORS } from '../../functions/constants';
 import { userCRUD } from '../../http/CRUD';
-import { changeUserInfo, logout } from '../../redux/actions/authActions';
+import { changeUserInfo, deleteUser, logout } from '../../redux/actions/authActions';
 import {useI18n} from "../../i18n/i18n";
 
-function FormGroup({ forms, last = false }) {
+function FormGroup({ forms, last = false }, props) {
   const [modalVisible, setModalVisible] = React.useState(false);
   const { userInfo } = useSelector((state) => state.user);
   const [date, setDate] = React.useState(new Date());
   const [privateMode, setPrivateMode] = React.useState(userInfo?.private);
   const dispatch = useDispatch();
+  const { navigation } = props;
 
   const renderLine = () => {
     return (
@@ -82,7 +83,7 @@ function FormGroup({ forms, last = false }) {
           </>
         );
       }
-      case 'button': {
+      case 'buttonLogOut': {
         const goToAction = async () => {
           await dispatch(logout());
           navigation.navigate('AuthNavigator', { screen: 'Auth' });
@@ -90,15 +91,36 @@ function FormGroup({ forms, last = false }) {
         return (
           <>
             <FormGroupElement>
-              <FormGroupText>{name}</FormGroupText>
               <FormGroupSelect>
                 <Pressable
-                  style={{ paddingRight: 12 }}
+                  onPress={goToAction}
+                >
+                  <FormGroupButtonText>
+                    {value}
+                  </FormGroupButtonText>
+                 {/*    <FormGroupSelectText></FormGroupSelectText> */}
+                </Pressable>
+              </FormGroupSelect>
+
+            </FormGroupElement>
+            {!lastElement && renderLine()}
+          </>
+        );
+      }
+      case 'buttonDeleteProfile': {
+        const goToAction = async () => {
+          await dispatch(deleteUser(userInfo));
+          navigation.navigate('AuthNavigator', { screen: 'Auth' });
+        };
+        return (
+          <>
+            <FormGroupElement>
+              <FormGroupSelect>
+                <Pressable
                   onPress={goToAction}
                 >
                   <FormGroupSelectText>{value}</FormGroupSelectText>
                 </Pressable>
-                <Icon handlePressIcon={goToAction} source={require('../../assets/images/icons/profile/arrow.png')} />
               </FormGroupSelect>
 
             </FormGroupElement>
@@ -170,6 +192,14 @@ function FormGroup({ forms, last = false }) {
     </FormGroupContainer>
   );
 }
+
+const styles = {
+  selectTextContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+};
 
 FormGroup.propTypes = {
   last: PropTypes.bool,

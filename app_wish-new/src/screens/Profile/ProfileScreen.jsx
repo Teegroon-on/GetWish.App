@@ -124,6 +124,16 @@ function ProfileScreen({ navigation }) {
           ]}
           />
           <FormGroup
+            forms={[
+              { type: 'buttonLogOut', value: t('logout') },
+            ]}
+          />
+          <FormGroup
+            forms={[
+              { type: 'buttonDeleteProfile', value: t('deleteAccount') },
+            ]}
+          />
+          <FormGroup
             last
             forms={[
               { type: 'switch', name: t('profile_privateProfile') },

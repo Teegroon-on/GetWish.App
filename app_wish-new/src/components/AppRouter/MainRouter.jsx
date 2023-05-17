@@ -494,10 +494,6 @@ function TabStack() {
       }}
     >
       <Tab.Screen
-        name="Main"
-        component={MainScreen}
-      />
-      <Tab.Screen
         name="Posts"
         component={PostsStack}
         options={() => {
