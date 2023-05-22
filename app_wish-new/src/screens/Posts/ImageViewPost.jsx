@@ -103,7 +103,7 @@ function ImageViewPost({
         aspect: [4, 3],
         quality: 1,
       });
-      if (!image.cancelled) {
+      if (!image.canceled) {
         await manipulateImage(image);
       }
     } else {

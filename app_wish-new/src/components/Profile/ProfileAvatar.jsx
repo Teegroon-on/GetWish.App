@@ -34,7 +34,7 @@ function ProfileAvatar({ ...props }) {
             aspect: [4, 3],
             quality: 1,
           });
-          if (!image.cancelled) {
+          if (!image.canceled) {
             navigation.push('ImageView', {
               image
             });
@@ -48,7 +48,7 @@ function ProfileAvatar({ ...props }) {
               aspect: [4, 3],
               quality: 1,
             });
-            if (!image.cancelled) {
+            if (!image.canceled) {
               navigation.push('ImageView', {
                 image,
                 camera: true

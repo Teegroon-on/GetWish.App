@@ -146,7 +146,7 @@ function AddWish({ navigation, ...props }) {
             aspect: [4, 3],
             quality: 1,
           });
-          if (!image.cancelled) {
+          if (!image.canceled) {
             navigation.push('ImageViewPost', {
               image,
               addWish: true,
@@ -162,7 +162,7 @@ function AddWish({ navigation, ...props }) {
               aspect: [4, 3],
               quality: 1,
             });
-            if (!image.cancelled) {
+            if (!image.canceled) {
               navigation.push('ImageView', {
                 image,
                 camera: true,
