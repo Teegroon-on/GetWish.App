@@ -2,7 +2,7 @@
   "expo": {
     "name": "getwish",
     "slug": "getwish",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "jsEngine": "hermes",
     "orientation": "portrait",
     "icon": "./src/assets/icon.png",
@@ -28,8 +28,13 @@
       "favicon": "./src/assets/favicon.png"
     },
     "ios": {
-      "bundleIdentifier": "com.mediapark.getwish",
+      "bundleIdentifier": "com.getwish",
       "jsEngine": "jsc"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "f5879f84-7eff-49bc-bd6e-0f396a1c34b0"
+      }
     }
   }
 }

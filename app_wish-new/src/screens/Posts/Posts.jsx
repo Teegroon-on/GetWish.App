@@ -11,9 +11,11 @@ import PostsTabBar from '../../components/Posts/PostsTabBar';
 import TutorialPosts from '../../components/Tutorials/TutorialPosts';
 import Header from '../../components/Header/Header';
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useI18n } from '../../i18n/i18n';
 
 function Posts({ navigation }) {
-
+  const t = useI18n();
+  const postTitle = t('profile_posts');
   const renderScene = SceneMap({
     public: PostLenta,
     private: PostMy,
@@ -51,17 +53,17 @@ function Posts({ navigation }) {
     return [
       {
         key: 'public',
-        title: 'Лента'
+        title: t('feed'),
       },
       {
         key: 'private',
-        title: 'Мои посты',
+        title: t('my_posts'),
       },
     ];
   }, []);
   return (
     <>
-      <Header navigation={navigation} cancel={false} title="Посты" />
+      <Header navigation={navigation} cancel={false} title={postTitle} />
       <FriendsContainer>
         <TabView
           renderTabBar={({ navigationState, jumpTo }) => {

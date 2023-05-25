@@ -499,7 +499,7 @@ function TabStack() {
         options={() => {
           return {
             tabBarOptions: { showIcon: true },
-            tabBarLabel: 'Посты',
+            tabBarLabel: t('profile_posts'),
           };
         }}
       />

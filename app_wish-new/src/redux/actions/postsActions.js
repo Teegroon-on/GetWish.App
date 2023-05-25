@@ -12,7 +12,7 @@ import {FileSystemSessionType} from "expo-file-system";
 export const addNewPost = async (file, id) => {
   let token = `Bearer ${await AsyncStorage.getItem('token')}`;
   return new Promise((resolve) => {
-    FileSystem.uploadAsync(`https://wish.dev39.ru/api/v1/post/attachment/upload`, file?.uri, {
+    FileSystem.uploadAsync(`http://195.24.67.42/api/v1/post/attachment/upload`, file?.uri, {
       headers: {
         "Content-Type": "multipart/form-data",
         Accept: 'application/json',

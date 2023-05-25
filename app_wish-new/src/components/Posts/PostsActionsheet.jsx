@@ -18,6 +18,7 @@ function PostsActionsheet({
 }) {
 
   const t = useI18n();
+  const firstText = t('add_post_text');
   const handleClose = () => {
     setOpen(false);
   };
@@ -39,7 +40,7 @@ function PostsActionsheet({
             marginTop="10px"
             textAlign="center"
           >
-            Ты можешь добавить в свой пост от 1 до 5 фото и / или видео длиной не более 1 минуты
+            {firstText}
           </Text>
           <Text alignSelf="center" maxWidth="335px" fontSize={14} color={COLORS.gray} marginTop="10px" textAlign="center">
             Они будут обрезаны под квадрат, но ты можешь настраивать,
