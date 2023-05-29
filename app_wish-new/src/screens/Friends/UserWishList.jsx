@@ -39,7 +39,6 @@ function UserWishList({ navigation, route: { params: { id, backToWish } } }) {
   const { reloadValue } = useSelector((state) => state.generic);
   const { userInfo: { id: userId } } = useSelector((state) => state.user);
   const { oneUser } = useSelector((state) => state.user);
-  console.log(oneUser)
   const { showActionSheetWithOptions } = useActionSheet();
   const state = new ActionSheets(t, showActionSheetWithOptions);
   const parent = navigation.getParent();
@@ -143,10 +142,10 @@ function UserWishList({ navigation, route: { params: { id, backToWish } } }) {
               fontSize="18px"
               lineHeight="25px"
             >
-              Здесь ни одного желания
+              {t('noWishHereText')}
             </Text>
-            {isYourWishList ? <Text color={COLORS.gray} marginTop="11px" fontSize="14px" lineHeight="20px">Твоим друзьям придётся поломать голову!</Text> :
-                <Text color={COLORS.gray} marginTop="11px" fontSize="14px" lineHeight="20px">Тебе придется поломать голову!</Text>}
+            {isYourWishList ? <Text color={COLORS.gray} marginTop="11px" fontSize="14px" lineHeight="20px">{t('breakHeadFriends')}</Text> :
+                <Text color={COLORS.gray} marginTop="11px" fontSize="14px" lineHeight="20px">{t('breakYoursHead')}</Text>}
             {isYourWishList ? <AuthButton
               style={{
                 zIndex: 999, display: 'flex', width: 172, marginTop: 40
@@ -154,7 +153,7 @@ function UserWishList({ navigation, route: { params: { id, backToWish } } }) {
               onPress={goToAddWish}
               variant="small"
               bxShadow
-              text="Задагать желание"
+              text={t('makeAWish')}
             /> : null}
           </FriendsContainerFirst>
         </ScrollView>
@@ -240,8 +239,8 @@ function UserWishList({ navigation, route: { params: { id, backToWish } } }) {
                 {oneWishList?.wishes?.length
                   ? `${oneWishList?.wishes?.length} ${declOfNum(
                     oneWishList?.wishes?.length,
-                    ['желание', 'желания', 'желаний']
-                  )}` : 'Нет желаний'}
+                    [t('desires_desirePlurals1', t('desires_desirePlurals2'), t('desires_desirePlurals3'))]
+                  )}` : t('noWishTest')}
               </Text>
             </Box>
             <DesiresScreenRow>

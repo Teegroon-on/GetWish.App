@@ -110,11 +110,11 @@ function ImageViewPost({
       return showActionSheetWithOptions(
           {
             options: [
-              'Перейти в настройки',
+              t('goToSettings'),
             ],
-            title: 'Фото профиля',
-            message: 'Разреши доступ к Фото в настройках\n' +
-                'телефона, чтобы добавлять фото из галереи',
+            title: t('profile_photo'),
+            message: t('profileAccessPhoto') +
+                t('profileAccessPhoto1'),
             cancelButtonIndex: 0,
             userInterfaceStyle: 'dark'
           }, async (buttonIndex) => {
@@ -139,7 +139,7 @@ function ImageViewPost({
       <ImageViewContainer>
         <ImageViewHeader>
           <ImageViewCancel onPress={goBack}>{t('cancel')}</ImageViewCancel>
-          <ImageViewTitle>Снимок с камеры</ImageViewTitle>
+          <ImageViewTitle>{t('cameraPhoto')}</ImageViewTitle>
         </ImageViewHeader>
         <ImageViewSourceContainer>
           <View

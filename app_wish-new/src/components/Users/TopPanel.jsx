@@ -77,15 +77,15 @@ function TopPanel() {
         <HStack alignItems="center">
           <Box paddingRight="22.5px" paddingLeft="22.5px">
             <Text fontSize={15} fontWeight="bold" textAlign="center">{oneUser?.friends}</Text>
-            <Text fontSize={13} textAlign="center">{declOfNum(oneUser?.friends, ['друг', 'друга', 'друзей'])}</Text>
+            <Text fontSize={13} textAlign="center">{declOfNum(oneUser?.friends, [t('friend_plurals'), t('friend_plurals1'), t('friend_plurals2')])}</Text>
           </Box>
           <Box paddingRight="22.5px" paddingLeft="22.5px">
             <Text fontSize={15} fontWeight="bold" textAlign="center">{oneUser?.posts}</Text>
-            <Text fontSize={13} textAlign="center">{declOfNum(oneUser?.posts, ['пост', 'поста', 'постов'])}</Text>
+            <Text fontSize={13} textAlign="center">{declOfNum(oneUser?.posts, [t('desires_Posts'), t('desires_Posts2'), t('desires_Posts3')])}</Text>
           </Box>
           <Box paddingRight="22.5px" paddingLeft="22.5px">
             <Text fontSize={15} fontWeight="bold" textAlign="center">{oneUser?.wishes}</Text>
-            <Text fontSize={13} textAlign="center">{declOfNum(oneUser?.wishes, ['желание', 'желания', 'желаний'])}</Text>
+            <Text fontSize={13} textAlign="center">{declOfNum(oneUser?.wishes, [t('desires_desirePlurals1'), t('desires_desirePlurals2'), t('desires_desirePlurals3')])}</Text>
           </Box>
         </HStack>
       </HStack>
@@ -105,7 +105,7 @@ function TopPanel() {
           width: '100%', maxWidth: 335, height: 36
         }}
       >
-        Добавить в друзья
+        {t('friends_add_friend')}
       </SharedButton>
       )}
       {!oneUser?.is_friend && oneUser?.has_incoming_friend_request && (
@@ -113,7 +113,7 @@ function TopPanel() {
         onPress={() => acceptFriendProfile(oneUser?.id).then(() => {
           Toast.show({
             type: 'search',
-            text1: 'Пользователь добавлен в друзья',
+            text1: t('friendAddToFriend'),
             position: 'bottom',
             bottomOffset: 95,
           });
@@ -124,7 +124,7 @@ function TopPanel() {
           width: '100%', maxWidth: 335, height: 36
         }}
       >
-        Принять заявку в друзья
+        {t('addFriendRequestText')}
       </SharedButton>
       )}
       {oneUser?.has_outgoing_friend_request && !oneUser?.is_friend && (
@@ -137,7 +137,7 @@ function TopPanel() {
           width: '100%', maxWidth: 335, height: 36
         }}
       >
-        Запрос отправлен
+        {t('requestSending')}
       </SharedButton>
       )}
       {oneUser?.is_friend && (
@@ -159,7 +159,7 @@ function TopPanel() {
             onPress={deleteFriendHandler}
             leftIcon={<Image size="12px" source={require('../../assets/images/icons/users/check.png')} />}
           >
-            Вы друзья
+            {t('friends_youAreFriends')}
           </Button>
           <AuthButton
             higlightStyle={{ height: 36 }}

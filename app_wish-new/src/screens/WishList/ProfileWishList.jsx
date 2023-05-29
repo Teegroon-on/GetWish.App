@@ -4,6 +4,7 @@ import { SceneMap, TabView } from 'react-native-tab-view';
 import { FriendsContainer } from '../../styles/friends';
 import { FriendTabBars } from '../../styles/shared';
 import { WishListPrivate, WishListPublic, WishListTabBar } from '../../components';
+import { useI18n } from '../../i18n/i18n';
 
 function ProfileWishList() {
   const renderScene = SceneMap({
@@ -12,15 +13,16 @@ function ProfileWishList() {
   });
   const [index, setIndex] = React.useState(0);
   const layout = useWindowDimensions();
+  const t = useI18n();
   const routes = React.useMemo(() => {
     return [
       {
         key: 'public',
-        title: 'Публичные'
+        title: t('publicText')
       },
       {
         key: 'private',
-        title: 'Приватные',
+        title: t('privateTextNew'),
       },
     ];
   }, []);

@@ -50,7 +50,7 @@ function ReservedDesiresUser({
           <ReservedDesiresUserTitle>
             <Text>{el?.theme?.symbol || '🎄'}</Text>
             {' '}
-            {name || 'Новый год'}
+            {name || t('newYear')}
           </ReservedDesiresUserTitle>
           <Pressable
             onPress={() => {

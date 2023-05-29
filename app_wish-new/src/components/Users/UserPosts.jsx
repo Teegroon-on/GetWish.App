@@ -13,11 +13,12 @@ import Loader from "../Shared/Loader";
 import {SET_POSTS_USER_OTHER} from "../../redux/constants/postsConstants";
 import {Video} from "expo-av";
 import RenderVideo from "../RenderVideo";
+import { useI18n } from '../../i18n/i18n';
 
 function UserPosts() {
   const { oneUser } = useSelector((state) => state.user);
   const { otherUserPosts } = useSelector((state) => state.posts);
-
+  const t = useI18n();
 
 
   return (
@@ -73,7 +74,7 @@ function UserPosts() {
                       />
                   ) : (
                       <View paddingTop="200px" height="100%" width="100%" flex={1} alignItems="center">
-                        <Text>У пользователя пока нет постов</Text>
+                        <Text>{t('userHasNotPostYet')}</Text>
                       </View>
                   )
               )

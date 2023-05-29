@@ -19,7 +19,8 @@ function EnterNumberStep({ isChangePhone }) {
     const phoneNumber = data.phoneNumber.split(' ').join('');
     if (phoneNumber.length >= 10) {
       console.log(`${data.countryCode}${phoneNumber}`);
-      await sendCode(`${data.countryCode}${phoneNumber}`);
+     const t = await sendCode(`${data.countryCode}${phoneNumber}`);
+      console.log(t);
       onNextStep();
     }
   };

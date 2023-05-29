@@ -203,7 +203,7 @@ function SearchHeader({
   return (
     <>
       <ShareScreenHeader>
-        {cancel && <ShareScreenCancelText onPress={goBack}>Отмена</ShareScreenCancelText>}
+        {cancel && <ShareScreenCancelText onPress={goBack}>{t('cancel')}</ShareScreenCancelText>}
         <ShareScreenTitle>{title}</ShareScreenTitle>
         <ShareScreenPressable onPress={handleSearchPanel(true, true)}>
           <ShareScreenImage source={require('../../assets/images/icons/profile/desires/search.png')} />

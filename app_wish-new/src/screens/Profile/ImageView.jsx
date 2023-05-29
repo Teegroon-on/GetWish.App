@@ -105,7 +105,7 @@ function ImageView({
         await manipulateImage(image);
       }
     } else {
-      alert('Нет доступа');
+      alert(t('accessDenied'));
     }
   };
 

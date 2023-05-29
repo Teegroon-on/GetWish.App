@@ -111,7 +111,7 @@ function ShareScreen({ navigation, ...params }) {
             isDisabled={!friends?.length}
             onPress={onChangeCheckBoxTrue}
           >
-            Выбрать всех
+            {t('selectAll')}
           </Button>
           <Button
             isDisabled={isDisabled}
@@ -121,7 +121,7 @@ function ShareScreen({ navigation, ...params }) {
             }}
             onPress={onChangeCheckBoxFalse}
           >
-            Снять выбор
+            {t('unselect')}
           </Button>
         </ShareScreenButtonPanel>
         <ShareContext.Provider value={{ setSelectedFriends, selectedFriends }}>
@@ -141,7 +141,7 @@ function ShareScreen({ navigation, ...params }) {
             active={!isDisabled}
           >
             <Box display="flex" height="53px" alignItems="center" flexDirection="row">
-              <Text marginRight="10px" fontSize={16} lineHeight={Platform.OS === 'android' ? 20 : 0} fontFamily="NunitoBold" color={COLORS.white}>Сохранить выбор</Text>
+              <Text marginRight="10px" fontSize={16} lineHeight={Platform.OS === 'android' ? 20 : 0} fontFamily="NunitoBold" color={COLORS.white}>{t('share_saveChoice')}</Text>
               <Box
                 display="flex"
                 justifyContent="center"

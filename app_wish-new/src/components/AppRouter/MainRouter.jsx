@@ -172,17 +172,17 @@ function PostsStack() {
       }} name="UserProfile" component={UserProfile}/>
       <Stack.Screen options={{ headerShown: false }} name="Swiper" component={SwiperImage}/>
       <Stack.Screen
-        options={{ header: (navigation) => <Header title="Мои посты" navigation={navigation}/> }}
+        options={{ header: (navigation) => <Header title={t('my_posts')} navigation={navigation}/> }}
         name="MyPost" component={MyPost}/>
       <Stack.Screen
-        options={{ header: (navigation) => <Header title="Комментарии" navigation={navigation}/> }}
+        options={{ header: (navigation) => <Header title={t('commentText')} navigation={navigation}/> }}
         name="Comments" component={Comments}/>
       <Stack.Screen
-        options={{ header: (navigation) => <Header title="Нравится" navigation={navigation}/> }}
+        options={{ header: (navigation) => <Header title={t('likeText')} navigation={navigation}/> }}
         name="Likes" component={Likes}/>
       <Stack.Screen options={{ headerShown: false }} name="ShareScreen" component={ShareScreen}/>
       <Stack.Screen
-        options={{ header: (navigation) => <Header title="Посты" navigation={navigation}/> }}
+        options={{ header: (navigation) => <Header title={t('profile_posts')} navigation={navigation}/> }}
         name="UserPostOther" component={PostUserOthere}/>
     </Stack.Navigator>
   );
@@ -318,13 +318,13 @@ function FriendsStack({ navigation }) {
       <Stack.Screen options={{ headerShown: false }} name="ShareScreen" component={ShareScreen}/>
       <Stack.Screen options={{ headerShown: false }} name="Swiper" component={SwiperImage}/>
       <Stack.Screen
-        options={{ header: (navigation) => <Header title="Посты" navigation={navigation}/> }}
+        options={{ header: (navigation) => <Header title={t('profile_posts')} navigation={navigation}/> }}
         name="UserPostOther" component={PostUserOthere}/>
       <Stack.Screen
-        options={{ header: (navigation) => <Header title="Комментарии" navigation={navigation}/> }}
+        options={{ header: (navigation) => <Header title={t('commentText')} navigation={navigation}/> }}
         name="Comments" component={Comments}/>
       <Stack.Screen
-        options={{ header: (navigation) => <Header title="Нравится" navigation={navigation}/> }}
+        options={{ header: (navigation) => <Header title={t('likeText')} navigation={navigation}/> }}
         name="Likes" component={Likes}/>
 
     </Stack.Navigator>

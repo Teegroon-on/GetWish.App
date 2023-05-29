@@ -16,6 +16,7 @@ import { AddPostContext } from '../../screens/Posts/AddPost';
 import useLoader from '../../hooks/useLoader';
 import {Video} from "expo-av";
 import {useActionSheet} from "@expo/react-native-action-sheet";
+import { useI18n } from '../../i18n/i18n';
 
 const pickerSelectStyles = StyleSheet.create({
   inputIOS: {
@@ -49,6 +50,9 @@ function AddPostFirstStep() {
   const [count, setCount] = React.useState(50);
   const [sort, setSort] = React.useState('modificationTime');
   const windowWidth = Dimensions.get('window').width;
+  const t = useI18n();
+  const newPostText = t('newPostText');
+  const noPhotoVideoText = t('noPhotoVideoText');
   React.useEffect(() => {
     (async function () {
       const answer = await MediaLibrary.requestPermissionsAsync();
@@ -116,7 +120,7 @@ function AddPostFirstStep() {
     if (!maybeNext) {
       return Toast.show({
         type: 'error',
-        text1: 'Нельзя загружать ролики длиной более минуты',
+        text1: t('errorLoadPost'),
         position: 'bottom',
         bottomOffset: 95
       });
@@ -124,7 +128,7 @@ function AddPostFirstStep() {
     if (!checkedItems.length) {
       return Toast.show({
         type: 'error',
-        text1: 'Сначала нужно что-то выбрать',
+        text1: t('errorEmptyLoadPost'),
         position: 'bottom',
         bottomOffset: 95
       });
@@ -250,7 +254,7 @@ function AddPostFirstStep() {
           alignItems="center"
           justifyContent="center"
         >
-          <Text>Фото/Видео не выбрано</Text>
+          <Text>{noPhotoVideoText}</Text>
         </View>
       );
   }, [selectedImage?.duration, selectedImage?.uri, windowWidth]);
@@ -266,7 +270,7 @@ function AddPostFirstStep() {
         cancelText
         nextDisabled={!checkedItems?.length}
         nextHandler={onNextStepHandler}
-        title="Новый пост"
+        title={newPostText}
         navigation={navigation}
       />
       {RenderZoomElement(1) }
@@ -291,8 +295,8 @@ function AddPostFirstStep() {
           Icon={() => <Image width="8px" height="10px" source={require('../../assets/images/icons/posts/arrow.png')} />}
           onValueChange={(value) => setSort(value)}
           items={[
-            { label: 'Недавние', value: 'modificationTime', key: 'modificationTime' },
-            { label: 'По созданию', value: 'creationTime', key: 'creationTime' },
+            { label: t('pickerTextSort1'), value: 'modificationTime', key: 'modificationTime' },
+            { label: t('pickerTextSort2'), value: 'creationTime', key: 'creationTime' },
           ]}
         />
       </View>

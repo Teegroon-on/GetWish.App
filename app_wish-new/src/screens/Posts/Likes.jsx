@@ -63,7 +63,7 @@ function Likes({ navigation, route: { params: { postId }, ...props } }) {
         />
       ) : (
         <View backgroundColor={COLORS.white2} height="100%" width="100%" flex={1} justifyContent="center" alignItems="center">
-          <Text color={COLORS.gray}>Нет лайков</Text>
+          <Text color={COLORS.gray}>{t('noLikes')}</Text>
         </View>
       )}
     </>

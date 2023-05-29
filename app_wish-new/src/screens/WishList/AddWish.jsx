@@ -24,6 +24,7 @@ import { wishCRUD } from '../../http/CRUD';
 import store from '../../redux';
 import { GO_BACK_ID } from '../../redux/constants/wishConstants';
 import {reload} from "../../redux/actions/genericActions";
+import { useI18n } from '../../i18n/i18n';
 
 function AddWish({ navigation, ...props }) {
   const { start, stop, loading } = useLoader(false);
@@ -32,7 +33,7 @@ function AddWish({ navigation, ...props }) {
   const [serverImages, setServeImages] = React.useState([]);
   const [deleteImages, setDeleteImage] = React.useState([]);
   const [disabled, setDisabled] = React.useState(false);
-
+  const t = useI18n();
   const [images, setImages] = React.useState([
     { id: 1 },
     { id: 2 },
@@ -133,8 +134,8 @@ function AddWish({ navigation, ...props }) {
   const choseImage = () => {
     showActionSheetWithOptions(
       {
-        options: ['Отмена', 'Выбрать из галереи', 'Сделать снимок'],
-        title: 'Выбор фото',
+        options: [t('imageSelector'), t('imageSelector1'), t('imageSelector2')],
+        title: t('profile_selectPhoto'),
         cancelButtonIndex: 0,
         userInterfaceStyle: 'dark'
       },
@@ -171,7 +172,7 @@ function AddWish({ navigation, ...props }) {
               });
             }
           } else {
-            alert('Нет доступа');
+            alert(t('accessDenied'));
           }
         }
       }
@@ -268,7 +269,7 @@ function AddWish({ navigation, ...props }) {
             <InputText value={name} onChange={setName} marginTop="20px" />
             <InputText link value={link} onChange={setLink} marginTop="20px" label="Ссылка" />
             <Text alignSelf="flex-start" fontSize="13px" color={COLORS.gray} maxWidth="308px" marginTop="10px">
-              Сюда можно вставить ссылку на магазин или ещё на что-нибудь полезное
+              {t('textAddSomeNeed')}
             </Text>
             <InputText
               disabled={disabled}
@@ -278,15 +279,15 @@ function AddWish({ navigation, ...props }) {
               value={description}
               onChange={setDescription}
               marginTop="20px"
-              label="Описание"
+              label={t('desc')}
             />
             <Box alignSelf="flex-start" maxWidth="320px" marginTop="10px">
               <Text alignSelf="flex-start" fontSize="13px" color={COLORS.gray}>
-                А здесь
+                {t('andHere')}
                 {' '}
-                {(disabled || description.length === 150) ? <Text color={COLORS.red}>кратко</Text> : ''}
+                {(disabled || description.length === 150) ? <Text color={COLORS.red}>{t('shorterText')}</Text> : ''}
                 {(disabled || description.length === 150) ? ' ' : ''}
-                можно описать какие-нибудь важные детали, например, свой любимый цвет или размер
+                {t('addWithText')}
               </Text>
             </Box>
             <InputText
@@ -300,7 +301,7 @@ function AddWish({ navigation, ...props }) {
               marginTop="25px"
             />
             <Text alignSelf="flex-start" marginTop="10px" fontSize="13px" color={COLORS.gray}>
-              {isEdit ? 'При редактировании, увы, нельзя изменить виш лист' : 'И, если хочешь, можешь поместить своё желание в другой вишлист'}
+              {isEdit ? t('addWishText1') : t('addWishText2')}
             </Text>
             <Box marginTop="35px" width="100%" flexDirection="row" justifyContent="space-between" alignItems="center">
               <Text fontSize="15px">Фотографии (до 5 шт)</Text>
@@ -308,15 +309,14 @@ function AddWish({ navigation, ...props }) {
             </Box>
             <ImagesChose deletePhoto={deletePhoto} images={images} />
             <Text alignSelf="flex-start" marginTop="15px" fontSize="13px" color={COLORS.gray}>
-              Первое загруженное фото будет установлено
-              в качестве главного
+              {t('downloadedPhotoText')}
             </Text>
           </WishListContainer>
         </KeyboardAwareScrollView>
       )}
       <Box alignItems="center" height="15%" pt="20px" width="100%" backgroundColor={COLORS.white2}>
         <AuthButton onPress={handleAddWish} active={name?.length && check(name) && !loading}>
-          Готово
+          {t('done')}
         </AuthButton>
       </Box>
     </View>

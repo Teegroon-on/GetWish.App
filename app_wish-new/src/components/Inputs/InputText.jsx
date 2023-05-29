@@ -5,13 +5,17 @@ import {
 import { Animated } from 'react-native';
 import { COLORS } from '../../functions/constants';
 import ChoseWishActionsheet from '../Actionsheet/ChoseWishActionsheet';
+import { useI18n } from '../../i18n/i18n';
 
 function InputText({
   value, onChange, marginTop = '0px', marginBottom = '0px', label = 'Название', link = false,
   description = false, onFocus, select = false, active, setActive, data, disabled, setDisabled, maxHeight = '150px',
   height, maxLength = 150
 }) {
-
+  const t = useI18n();
+  if (label === 'Название'){
+    label = t('textInputName');
+  }
   const [focused, setFocused] = React.useState(false);
   const [visibleActions, setVisibleActions] = React.useState(false);
   let _animatedIsFocused = new Animated.Value(value === '' ? 0 : 1);

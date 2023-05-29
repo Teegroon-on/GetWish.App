@@ -19,6 +19,9 @@ function PostsActionsheet({
 
   const t = useI18n();
   const firstText = t('add_post_text');
+  const secondText = t('add_post_second_text');
+  const buttonText = t('understandable');
+  const createPost = t('createPostText');
   const handleClose = () => {
     setOpen(false);
   };
@@ -33,7 +36,7 @@ function PostsActionsheet({
     >
       <Actionsheet.Content zIndex={998} style={{ elevation: 0 }} padding={0} backgroundColor="#fff">
         <ActionDesires style={{ paddingLeft: 20, paddingRight: 20, marginBottom: 30 }}>
-          <Text textAlign="center" fontFamily="NunitoBold" fontSize={18} color={COLORS.black}>Создание поста</Text>
+          <Text textAlign="center" fontFamily="NunitoBold" fontSize={18} color={COLORS.black}>{createPost}</Text>
           <Text
             fontSize={14}
             color={COLORS.gray}
@@ -43,16 +46,14 @@ function PostsActionsheet({
             {firstText}
           </Text>
           <Text alignSelf="center" maxWidth="335px" fontSize={14} color={COLORS.gray} marginTop="10px" textAlign="center">
-            Они будут обрезаны под квадрат, но ты можешь настраивать,
-            как именно: приблизь или смести
-            фото в блоке предпросмотра
+            {secondText}
           </Text>
           <AuthButton
             style={{ marginTop: 25, alignSelf: 'center' }}
             active
             onPress={() => setOpen(false)}
           >
-            Понятненько!
+            {buttonText}
           </AuthButton>
         </ActionDesires>
       </Actionsheet.Content>

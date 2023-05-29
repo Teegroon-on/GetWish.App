@@ -48,7 +48,7 @@ function DesiresScreenElementActionsheetReserv({
     >
       <Actionsheet.Content zIndex={998} style={{ elevation: 0 }} padding={0} backgroundColor="#fff">
         <ActionDesires style={{ paddingLeft: 20, paddingRight: 20, marginBottom: 30 }}>
-          <Text fontFamily="NunitoBold" fontSize={18} color={COLORS.black}>Способ резервирования:</Text>
+          <Text fontFamily="NunitoBold" fontSize={18} color={COLORS.black}>{t('reservedMethods')}</Text>
           <Radio.Group
             name="myRadioGroup"
             paddingTop="20px"

@@ -391,7 +391,7 @@ function PostBody({
                     maxWidth="283px"
                     fontSize="14px"
                   >
-                    Нравится
+                    {t('likeText')}
                     {' '}
                     <Text fontFamily="NunitoBold">{firstLikeUser}</Text>
                     {' '}
@@ -400,7 +400,7 @@ function PostBody({
                   </Text>
                 ) : el?.likes?.count ? (
                   <Text>
-                    Нравится:
+                    {t('likeText1')}
                     {el?.likes?.count}
                   </Text>
                 ) : null}
@@ -453,7 +453,7 @@ function PostBody({
           fontSize="12px"
           fontWeight="400"
         >
-          Смотреть все комментарии (
+          {t('seeAllComments')} (
           {el?.comments?.count}
           )
         </Text>

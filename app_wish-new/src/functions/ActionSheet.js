@@ -71,7 +71,7 @@ export class ActionSheets {
         await deleteComment(id);
         Toast.show({
           type: 'search',
-          text1: 'Комментарий удалён',
+          text1: t('commentsDeleted'),
           position: 'bottom',
           bottomOffset: 95
         });
@@ -195,7 +195,7 @@ export class ActionSheets {
               await archiveWishList(id, el?.private, el);
               Toast.show({
                 type: 'search',
-                text1: 'Виш лист отправлен в архив',
+                text1: t('addToArchive'),
                 position: 'bottom',
                 bottomOffset: 95
               })
@@ -230,10 +230,10 @@ export class ActionSheets {
           this.showActionSheetWithOptions({
             options: [
               this.t('cancel'),
-              'Удалить'
+              this.t('delete')
             ],
-            title: 'Удалить пост?',
-            message: 'Это действие нельзя будет отменить',
+            title: t('deletePostQuestion'),
+            message: t('nonCancelable'),
             cancelButtonIndex: 0,
             userInterfaceStyle: 'dark'
           }, async (buttonIndexChild) => {
@@ -241,7 +241,7 @@ export class ActionSheets {
               await deletePost(id);
               Toast.show({
                 type: 'search',
-                text1: 'Пост удалён',
+                text1: t('postDeleted'),
                 position: 'bottom',
                 bottomOffset: 95
               })

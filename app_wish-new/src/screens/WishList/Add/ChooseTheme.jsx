@@ -6,11 +6,11 @@ import { COLORS } from '../../../functions/constants';
 
 function ChooseTheme({ active, setActive, themes }) {
   const [emojis] = React.useState([
-    { id: 1, image: '🎄', color: '#EAFFD9' },
-    { id: 2, image: '🎁', color: '#FFEAD1' },
-    { id: 3, image: '💖', color: '#F5E6EF' },
-    { id: 4, image: '💐', color: '#E1FDFF' },
-    { id: 5, image: '🥳', color: '#F8E8FF' },
+    { id: 3, image: '🎄', color: '#EAFFD9' },
+    { id: 4, image: '🎁', color: '#FFEAD1' },
+    { id: 5, image: '💖', color: '#F5E6EF' },
+    { id: 6, image: '💐', color: '#E1FDFF' },
+    { id: 7, image: '🥳', color: '#F8E8FF' },
   ]);
 
   const handleChangeActive = (el) => {

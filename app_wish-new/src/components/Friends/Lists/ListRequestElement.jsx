@@ -65,7 +65,7 @@ function ListRequestElement({ data, first = false, handleSearchPanel }) {
                       textStyle={{ fontSize: 15, lineHeight: 21, fontWeight: 'bold'}}
                       onPress={() => cancelFriend(item?.id, first ? 'SEARCH_IN' : 'REQUEST')}
                     >
-                      Отклонить
+                      {t('decline')}
                     </SharedButton>
 
                     <AuthButton

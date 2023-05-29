@@ -10,6 +10,7 @@ import { Video } from 'expo-av';
 import { COLORS } from '../functions/constants';
 import { findVideoFromStore, goBack } from '../functions/helpers';
 import { Loader } from '../components';
+import { useI18n } from '../i18n/i18n';
 
 function RenderImage({ currentPage, images }) {
   let video = React.useRef(null);
@@ -67,7 +68,7 @@ function RenderImage({ currentPage, images }) {
 }
 
 function SwiperImage({ navigation, route: { params: { images, hidePanel } } }) {
-
+  const t = useI18n();
   React.useEffect(() => {
     const parent = navigation.getParent();
     parent.setOptions({ tabBarStyle: { display: 'none' } });
@@ -98,7 +99,7 @@ function SwiperImage({ navigation, route: { params: { images, hidePanel } } }) {
         <Text left="43%" position="absolute" alignSelf="center" fontFamily="NunitoBold" fontSize="17px" color={COLORS.white2}>
           {currentPage + 1}
           {' '}
-          из
+          {t('fromText')}
           {' '}
           {images.length}
         </Text>

@@ -285,9 +285,9 @@ function DesiresScreenElementActionsheet({
                   backgroundColor={COLORS.extralightGray}
                   height="64px"
                 >
-                  <Text fontSize="14px" maxWidth="305px">Ты больше не можешь резервировать</Text>
+                  <Text fontSize="14px" maxWidth="305px">{t('cantReserveMore')}</Text>
                   <Text fontSize="14px" maxWidth="305px">
-                    желания этого друга.
+                    {t('cantReserveMore1')}
                     {' '}
                     {' '}
                     <Text onPress={() => setOpenChildWhy(true)} color={COLORS.purple}>Почему?</Text>
@@ -337,7 +337,7 @@ function DesiresScreenElementActionsheet({
                         : require('../../assets/images/icons/wishlist/anonim.png')}
                     />
                     <Box marginLeft="10px">
-                      <Text fontSize={14} color={COLORS.black}>{oneWish?.user ? oneWish?.user?.username : 'Таинственный незнакомец'}</Text>
+                      <Text fontSize={14} color={COLORS.black}>{oneWish?.user ? oneWish?.user?.username : t('secretStrangerText')}</Text>
                       <Text fontSize={14} color={COLORS.gray}>
                         {t('desires_reserved')}
                       </Text>
@@ -366,7 +366,7 @@ function DesiresScreenElementActionsheet({
                       : require('../../assets/images/icons/profile/avatar.png') : require('../../assets/images/icons/wishlist/anonim.png')}
                   />
                   <Box marginLeft="10px">
-                    <Text fontSize={14} color={COLORS.black}>{oneWish?.user ? oneWish?.user?.username : 'Таинственный незнакомец'}</Text>
+                    <Text fontSize={14} color={COLORS.black}>{oneWish?.user ? oneWish?.user?.username : t('secretStrangerText')}</Text>
                     <Text fontSize={14} color={COLORS.gray}>
                       {t('desires_reserved')}
                     </Text>

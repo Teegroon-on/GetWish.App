@@ -37,7 +37,7 @@ function ChangeNicknameStep({ navigation }) {
 
   const t = useI18n()
 
-  const { show } = useToasts(2000, 'Никнейм успешно изменен');
+  const { show } = useToasts(2000, t('profile_nicknameChanged'));
 
   const nicknameValidationSchema = yup.object().shape({
     nickName: yup
@@ -67,11 +67,11 @@ function ChangeNicknameStep({ navigation }) {
     <ChangeNicknameContainer>
       <ChangeNicknameHeader>
         <Pressable onPress={() => navigateAction('MainProfile')}>
-          <AuthStepCancelText>Отмена</AuthStepCancelText>
+          <AuthStepCancelText>{t('cancel')}</AuthStepCancelText>
         </Pressable>
-        <HeaderTitle>Никнейм</HeaderTitle>
+        <HeaderTitle>{t('nickname')}</HeaderTitle>
         <Pressable onPress={handleChangeNickname}>
-          <Text color={canRegistration ? '#8424FF' : '#D4DAEC'} fontFamily="Nunito" fontWeight="bold" fontSize={16}>Готово</Text>
+          <Text color={canRegistration ? '#8424FF' : '#D4DAEC'} fontFamily="Nunito" fontWeight="bold" fontSize={16}>{t('done')}</Text>
         </Pressable>
       </ChangeNicknameHeader>
       <Formik
@@ -92,7 +92,7 @@ function ChangeNicknameStep({ navigation }) {
           return (
             <EnterNickNameStepContainer>
               <TextFieldTwoContainer>
-                <TextFieldLabel><TextFieldLabelText>Никнейм</TextFieldLabelText></TextFieldLabel>
+                <TextFieldLabel><TextFieldLabelText>{t('nickname')}</TextFieldLabelText></TextFieldLabel>
                 <PressableTextField onPress={() => {
                   setUserName('');
                   setFieldValue('nickName', '');

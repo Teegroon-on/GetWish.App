@@ -31,7 +31,7 @@ function CalendarShared({
       await changeUserInfo('userInfo', data);
       Toast.show({
         type: 'search',
-        text1: 'Дата рождения изменена',
+        text1: t('changeBirthDateText'),
         position: 'bottom',
         bottomOffset: 95
       });

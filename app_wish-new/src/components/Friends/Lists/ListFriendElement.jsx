@@ -91,7 +91,7 @@ function ListFriendElement({
                   width: 138, marginLeft: 'auto', maxWidth: 138, height: 30, fontWeight: 'bold'
                 }}
               >
-                Отменить запрос
+                {t('friends_cancel')}
               </SharedButton>
             ) : (
               <Pressable

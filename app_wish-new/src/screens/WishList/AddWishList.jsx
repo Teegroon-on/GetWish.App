@@ -27,6 +27,7 @@ import { createWishList, getThemes } from '../../redux/actions/wishListActions';
 import { wishlistCRUD } from '../../http/CRUD';
 import { reload } from '../../redux/actions/genericActions';
 import { setWishListAdded } from '../../redux/actions/wishActions';
+import { useI18n } from '../../i18n/i18n';
 
 function AddWishList({ navigation, ...props }) {
   const { start, stop, loading } = useLoader(false);
@@ -39,7 +40,7 @@ function AddWishList({ navigation, ...props }) {
   const { addedWishId } = useSelector((state) => state.wish);
   const [selectedFriendsLocal, setSelectedFriendsLocal] = React.useState([]);
   const dispatch = useDispatch();
-
+  const t = useI18n();
   const id = React.useMemo(() => props?.route?.params?.id, [props?.route?.params?.id]);
   const isEdit = !!id;
 
@@ -100,7 +101,7 @@ function AddWishList({ navigation, ...props }) {
           goToUserWishLists({ id, backToWish: true });
           Toast.show({
             type: 'search',
-            text1: 'Изменения сохранены',
+            text1: t('changesSaveText'),
             position: 'bottom',
             bottomOffset: 95
           });
@@ -188,9 +189,9 @@ function AddWishList({ navigation, ...props }) {
           <Loader />
         ) : (
           <WishListContainer style={{ alignItems: 'center' }}>
-            <Text alignSelf="flex-start" mt="20px" fontSize={15}>Тема оформления:</Text>
+            <Text alignSelf="flex-start" mt="20px" fontSize={15}>{t('themeText')}</Text>
             <ChooseTheme themes={themes} active={active} setActive={setActive} />
-            <Text textAlign="center" color={COLORS.gray} fontSize={12}>Твой вишлист будет выглядеть так </Text>
+            <Text textAlign="center" color={COLORS.gray} fontSize={12}>{t('yourWishListDisplay')}</Text>
             {active && (
             <Image
               alignSelf="center"
@@ -203,7 +204,7 @@ function AddWishList({ navigation, ...props }) {
             <InputText value={name} onChange={setName} marginBottom="20px" marginTop="30px" />
             <FormGroupContainer lst={0}>
               <FormGroupElementSwitch>
-                <FormGroupTextSwitch>Приватный вишлист</FormGroupTextSwitch>
+                <FormGroupTextSwitch>{t('privateWish')}</FormGroupTextSwitch>
                 <FormGroupSwitch
                   thumbColor="#fff"
                   value={privateWishList}
@@ -214,16 +215,16 @@ function AddWishList({ navigation, ...props }) {
               </FormGroupElementSwitch>
             </FormGroupContainer>
             <ProfilePrivateText>
-              Включи, если хочешь, чтобы этот вишлист был доступен только определенным друзьям
+              {t('privateText')}
             </ProfilePrivateText>
             {loading ? <Spinner /> : privateWishList && (
             <View width="100%" paddingTop={30}>
               <View width="100%" flexDirection="row" display="flex" height="22px" justifyContent="space-between">
                 <Text width="110px" fontSize={15}>
-                  {selectedFriends?.length ? 'Доступен для' : 'Кому доступен'}
+                  {selectedFriends?.length ? t('availableFor') : t('availableWho')}
                   :
                 </Text>
-                <Text onPress={goToShareScreenHandle} width="66px" fontSize={15} color={COLORS.purple} fontFamily="NunitoBold">Выбрать</Text>
+                <Text onPress={goToShareScreenHandle} width="66px" fontSize={15} color={COLORS.purple} fontFamily="NunitoBold">{t('select')}</Text>
               </View>
               {selectedFriends?.length ? (
                 <ListFriendsMinus
@@ -232,8 +233,7 @@ function AddWishList({ navigation, ...props }) {
                 />
               ) : (
                 <WishListPrivateText>
-                  Выбери друзей, которым будет доступен
-                  этот вишлист. Если никого не выбрать, его будешь видеть только ты.
+                  {t('addFriendsText')}
                 </WishListPrivateText>
               )}
             </View>
@@ -243,7 +243,7 @@ function AddWishList({ navigation, ...props }) {
       </KeyboardAwareScrollView>
       <Box alignItems="center" height="15%" pt="20px" width="100%" backgroundColor={COLORS.white2}>
         <AuthButton onPress={handleAddWishLists} active={canNext}>
-          {isEdit ? 'Сохранить изменения' : 'Готово'}
+          {isEdit ? t('saveChanges') : t('done')}
         </AuthButton>
       </Box>
     </View>

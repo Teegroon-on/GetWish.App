@@ -7,13 +7,14 @@ import {Text} from "native-base";
 import {useSelector} from "react-redux";
 import {getOneUser, openUser} from "../../redux/actions/userActions";
 import ReadMore from '@fawazahmed/react-native-read-more';
+import { useI18n } from '../../i18n/i18n';
 
 function TextParser({ description, maxLenght, post }) {
   const [text, setText] = React.useState('');
   const [users, setUsers] = React.useState([]);
   const [tags, setTags] = React.useState([]);
   const { friends } = useSelector((state) => state.user);
-
+  const t = useI18n();
   const parsingUserTag = async (description) => {
     let newDesc = description;
     const tags = newDesc?.match(/<(.*?)>/gm);
@@ -77,7 +78,7 @@ function TextParser({ description, maxLenght, post }) {
 
   const renderText = (matchingString, matches) => {
     return <Text onPress={handleClickMore} zIndex={99} style={styles.link}>
-      ... еще</Text>;
+      {t('moreText')}</Text>;
   }
 
   const handleClickMore = async () => {

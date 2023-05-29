@@ -11,6 +11,7 @@ import { DesiresScreenElement, Loader } from '../../components';
 import Header from '../../components/Header/Header';
 import useLoader from '../../hooks/useLoader';
 import { getUserReservedList } from '../../redux/actions/wishListActions';
+import { useI18n } from '../../i18n/i18n';
 
 function ReservWishList({ navigation }) {
   const [refreshing, setRefreshing] = React.useState(false);
@@ -22,6 +23,7 @@ function ReservWishList({ navigation }) {
   }, []);
   const { reloadValue } = useSelector((state) => state.generic);
   const { reservedWishList } = useSelector((state) => state.user);
+  const t = useI18n();
 
   React.useEffect(() => {
     (async function load() {
@@ -44,7 +46,7 @@ function ReservWishList({ navigation }) {
         >
           <Header
             cancel
-            title="Зарезервированные желания"
+            title={t('profile_reservedDesires')}
             navigation={navigation}
           />
           <ScrollView

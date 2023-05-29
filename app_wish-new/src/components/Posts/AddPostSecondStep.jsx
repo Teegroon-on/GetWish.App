@@ -24,6 +24,7 @@ import {
 import { Loader } from '../index';
 import { reload } from '../../redux/actions/genericActions';
 import {Video} from "expo-av";
+import { useI18n } from '../../i18n/i18n';
 
 function AddPostSecondStep() {
   const {
@@ -32,7 +33,10 @@ function AddPostSecondStep() {
   const [onFocus, setOnFocus] = React.useState(false)
   const [disabled, setDisabled] = React.useState(false);
   const [description, setDescription] = React.useState('');
-
+  const t = useI18n();
+  const labelTextPost = t('postTextValue');
+  const textValue1 = t('textYouKnow1');
+  const textValue2 = t('textYouKnow2');
   const [elements, setElements] = React
     .useState([{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }]);
 
@@ -125,7 +129,6 @@ function AddPostSecondStep() {
   const [term, setTerm] = React.useState('');
   const [debouncedTerm, setDebouncedTerm] = React.useState(term);
   const [friends, setFriends] = React.useState([]);
-
   const handleDescription = async (val) => {
     setDescription(val);
     const array = val.match(/\@[a-z]*/gm);
@@ -202,7 +205,7 @@ function AddPostSecondStep() {
         await goToPostsUser();
         Toast.show({
           type: 'search',
-          text1: 'Пост успешно изменен',
+          text1: t('updatePostSuccess'),
           position: 'bottom',
           bottomOffset: 95
         })
@@ -271,7 +274,7 @@ function AddPostSecondStep() {
           }).catch(() => {
             Toast.show({
               type: 'error',
-              text1: 'Ошибка при создании поста',
+              text1: t('errorCreatePost'),
               position: 'bottom',
               bottomOffset: 95
             });
@@ -292,7 +295,7 @@ function AddPostSecondStep() {
       <Header
         cancel
         backHandler={id ? goBack : onPrevStep}
-        title={id ? 'Редактирование поста' : 'Новый пост'}
+        title={id ? t('editPostText') : t('newPostText')}
         navigation={navigation}
       />
       {loading ? <Loader /> : (
@@ -312,7 +315,7 @@ function AddPostSecondStep() {
                 setData={setFriends}
               />
               )}
-                <Text fontSize="15px" fontWeight="600">Фото и видео</Text>
+                <Text fontSize="15px" fontWeight="600">{t('photoAndVideoText')}</Text>
                 <ScrollView minHeight="68px" maxHeight="68px" marginTop="20px" horizontal>
                   <HStack space={3}>
                     {RenderElements()}
@@ -323,8 +326,8 @@ function AddPostSecondStep() {
                   marginTop="15px"
                   fontSize="13px"
                   color={COLORS.gray}
-                >{id ? 'При редактировании менять фото нельзя' :
-                    'Ты можешь вернуться назад, чтобы выбрать другие фото или видео'
+                >{id ? t('editPhotoText') :
+                    t('editPhotoText1')
                 }</Text>
               <InputText
                   onFocus={setOnFocus}
@@ -337,7 +340,7 @@ function AddPostSecondStep() {
                 maxHeight="200px"
                 onChange={handleDescription}
                 marginTop="30px"
-                label="Текст поста"
+                label={labelTextPost}
               />
               <Text
                 fontSize="13px"
@@ -345,18 +348,18 @@ function AddPostSecondStep() {
                 maxWidth="100%"
                 marginTop="15px"
               >
-                А ты знал, что можно ввести символ
+                {textValue1}
                 {' '}
                 <Text color={COLORS.purple}>@</Text>
                 {' '}
-                и начать вводить никнейм или имя друга, чтобы упомянуть его в посте? Невероятно!
+                {textValue2}
               </Text>
             </WishListContainer>
             </TouchableWithoutFeedback>
           </KeyboardAvoidingView>
           <Box alignItems="center" height="15%" pt="20px" width="100%" backgroundColor={COLORS.white2}>
             <AuthButton onPress={publicHandlerPost} active>
-              {id ? 'Сохранить' : 'Опубликовать'}
+              {id ? t('saveButtonText') : t('publish')}
             </AuthButton>
           </Box>
         </>

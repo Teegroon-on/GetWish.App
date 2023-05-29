@@ -54,7 +54,7 @@ function FormGroup({ forms, last = false }, props) {
           <>
             <FormGroupElement>
               <FormGroupText>{name}</FormGroupText>
-              <FormGroupTextInput android={Platform.OS === 'android'} onChangeText={handleChange} value={value} placeholderTextColor="#C8CCE1" placeholder="Не указано" />
+              <FormGroupTextInput android={Platform.OS === 'android'} onChangeText={handleChange} value={value} placeholderTextColor="#C8CCE1" placeholder={t('noUseText')} />
             </FormGroupElement>
             {!lastElement && renderLine()}
           </>

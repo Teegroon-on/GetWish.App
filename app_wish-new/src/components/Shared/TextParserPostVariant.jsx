@@ -7,13 +7,14 @@ import {Text, View} from "native-base";
 import {useSelector} from "react-redux";
 import {getOneUser, openUser} from "../../redux/actions/userActions";
 import ReadMore from '@fawazahmed/react-native-read-more';
+import { useI18n } from '../../i18n/i18n';
 
 function TextParserPostVariant({ description, children, post, username }) {
   const [text, setText] = React.useState('');
   const [users, setUsers] = React.useState([]);
   const [tags, setTags] = React.useState([]);
   const { friends } = useSelector((state) => state.user);
-
+  const t = useI18n();
 
 
   const parsingUserTag = async (description) => {
@@ -79,7 +80,7 @@ function TextParserPostVariant({ description, children, post, username }) {
 
   const renderText = (matchingString, matches) => {
     return <Text onPress={handleClickMore} zIndex={99} style={styles.link}>
-      ... еще</Text>;
+      {t('moreText')}</Text>;
   }
 
   const handleClickMore = async () => {
@@ -91,7 +92,7 @@ function TextParserPostVariant({ description, children, post, username }) {
 
   return (
       <View marginTop="10px" paddingLeft="15px" paddingRight="15px">
-        <ReadMore seeMoreText=" ...еще" ellipsis='' seeLessText="" wrapperStyle={{
+        <ReadMore seeMoreText={t('moreText')} ellipsis='' seeLessText="" wrapperStyle={{
           maxWidth: '86%'
         }} seeMoreStyle={{
           color: COLORS.gray,

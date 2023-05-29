@@ -20,6 +20,7 @@ import {userCRUD} from "../../http/CRUD";
 import {changeUserInfo} from "../../redux/actions/authActions";
 import {useIsFocused} from "@react-navigation/native";
 import {GO_BACK_TO_COMMENTS, SET_DATA} from "../../redux/constants/userConstants";
+import { useI18n } from '../../i18n/i18n';
 
 function Comments({
   navigation, route: {
@@ -35,7 +36,7 @@ function Comments({
   const [comment, setComment] = React.useState('');
   const dispatch = useDispatch();
   const parent = navigation.getParent();
-
+  const t = useI18n();
   const focused = useIsFocused();
 
   React.useEffect(() => {
@@ -300,7 +301,7 @@ function Comments({
               onBlur={handleBlur}
               borderWidth={0}
               backgroundColor="#F7F7F7"
-              placeholder="Твой комментарий"
+              placeholder={t('yourCommentText')}
               position="relative"
           />
         </Box>

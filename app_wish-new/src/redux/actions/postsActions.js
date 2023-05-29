@@ -28,6 +28,7 @@ export const addNewPost = async (file, id) => {
       sessionType: FileSystemSessionType.BACKGROUND,
     }).then((response) => {
       const answer = JSON.parse(response.body);
+      console.log(answer);
       resolve(answer.data.id)
     })
         .catch((error) => {

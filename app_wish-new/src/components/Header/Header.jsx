@@ -16,12 +16,14 @@ import {
 import { searchPanelHandler } from '../../redux/actions/genericActions';
 import { goToArchive } from '../../functions/helpers';
 import { COLORS } from '../../functions/constants';
+import { useI18n } from '../../i18n/i18n';
 
 function Header({
   navigation, title, more, morePress, avatar, nextHandler,
   search, archive, cancel = true, cancelText, backHandler, nextDisabled
 }) {
   const { route } = navigation;
+  const t = useI18n();
   const goBack = async () => {
     if (search && !route.params?.noSearch) {
       await searchPanelHandler(true);
@@ -72,7 +74,7 @@ function Header({
           fontSize={16}
           fontWeight={600}
         >
-          Отмена
+          {t('cancel')}
         </Text>
       )}
       <HeaderTitle numberOfLines={1}>{title}</HeaderTitle>
@@ -101,7 +103,7 @@ function Header({
         fontSize={16}
         fontWeight={600}
       >
-        Далее
+        {t('nextButtonText')}
       </Text>
       )}
     </HeaderRow>

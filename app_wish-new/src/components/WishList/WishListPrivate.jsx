@@ -38,8 +38,8 @@ function WishListPrivate({ empty = true }) {
           {loading ? <Loader /> : !privateWishLists?.length ? (
             <>
               <FriendsImageEmpty resizeMode="cover" source={require('../../assets/images/icons/wishlist/private.png')} />
-              <Text color={COLORS.black} fontFamily="NunitoBold" marginTop="14px" fontWeight="bold" fontSize="18px" lineHeight="25px">Нет приватных вишлистов</Text>
-              <Text color={COLORS.gray} marginTop="11px" fontSize="14px" lineHeight="20px">Тебе нечего скрывать!</Text>
+              <Text color={COLORS.black} fontFamily="NunitoBold" marginTop="14px" fontWeight="bold" fontSize="18px" lineHeight="25px">{t('notPrivateWishes')}</Text>
+              <Text color={COLORS.gray} marginTop="11px" fontSize="14px" lineHeight="20px">{t('nothingToHide')}</Text>
               <AuthButton
                 style={{
                   zIndex: 999, display: 'flex', width: 172, marginTop: 40

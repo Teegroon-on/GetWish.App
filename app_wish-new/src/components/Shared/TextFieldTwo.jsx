@@ -7,6 +7,7 @@ import {
 import { LoaderNickname } from '../index';
 import { delay } from '../../functions';
 import { checkAvailability } from '../../redux/actions/authActions';
+import { useI18n } from '../../i18n/i18n';
 
 function TextFieldTwo(props) {
   const {
@@ -23,7 +24,7 @@ function TextFieldTwo(props) {
   const [loading, setLoading] = React.useState(false);
   const [preLoading, setPreLoading] = React.useState(false);
   const [errorAnimation, setErrorAnimation] = React.useState(false);
-
+  const t = useI18n();
   const animateState = {
     start: 0,
     end: 100
@@ -63,7 +64,7 @@ function TextFieldTwo(props) {
   };
 
   const animationError = async () => {
-    setErrors({ nickName: 'Допустимые символы: a-z, 0-9, . и _' });
+    setErrors({ nickName: t('allowSymbols')});
     setErrorAnimation(true);
     timeoutAnimation = setTimeout(async () => {
       setErrorAnimation(false);
@@ -103,11 +104,11 @@ function TextFieldTwo(props) {
         autoCapitalize="none"
       />
       {!hasError && availability && isSubmitting && !preLoading && !loading
-      && <NicknameSuccess>Никнейм свободен</NicknameSuccess>}
+      && <NicknameSuccess>{t('auth_nicknameAvailable')}</NicknameSuccess>}
       {!hasError && !availability && isSubmitting
       && !preLoading && !loading && (
       <NicknameError>
-        К сожалению, этот никнейм уже занят
+        {t('auth_nicknameNotAvailable')}
       </NicknameError>
       )}
       {hasError && !preLoading && !loading && <NicknameError>{errors[name]}</NicknameError>}
