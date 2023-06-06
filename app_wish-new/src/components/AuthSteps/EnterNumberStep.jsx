@@ -11,23 +11,22 @@ import {Platform} from "react-native";
 import {COLORS} from "../../functions/constants";
 import {KeyboardAvoidingView} from "native-base";
 import {NavigationActions as navigation} from "react-navigation";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function EnterNumberStep({ isChangePhone }) {
   const { data, onNextStep } = useContext(AuthContext);
-  console.log(data);
   const onPressNumberStep = async () => {
     const phoneNumber = data.phoneNumber.split(' ').join('');
-    if (phoneNumber.length >= 10) {
-      console.log(`${data.countryCode}${phoneNumber}`);
-     const t = await sendCode(`${data.countryCode}${phoneNumber}`);
-      console.log(t);
-      onNextStep();
-    }
+    const t = await sendCode(`+${data.countryCode}${phoneNumber}`);
+    onNextStep();
+   /*  if (phoneNumber.length >= 10) {
+
+    } */
   };
 
   const t = useI18n()
 
-  const disabledNext = data.phoneNumber.split(' ').join('').length < 10;
+  const disabledNext = data.phoneNumber.split(' ').join('').length < 3;
   const tosText = t('auth_tos', { returnObjects: true })
 
   return (

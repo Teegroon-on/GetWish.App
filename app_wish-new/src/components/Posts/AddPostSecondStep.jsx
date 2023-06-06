@@ -3,7 +3,7 @@ import {
   Box,
   HStack, Image, KeyboardAvoidingView, Pressable, ScrollView, Text, View
 } from 'native-base';
-import {Dimensions, Keyboard, Platform, TouchableWithoutFeedback} from 'react-native';
+import { Alert, Dimensions, Keyboard, Platform, TouchableWithoutFeedback } from 'react-native';
 import Toast from 'react-native-toast-message';
 import Header from '../Header/Header';
 import { AddPostContext } from '../../screens/Posts/AddPost';
@@ -197,6 +197,7 @@ function AddPostSecondStep() {
   };
 
   const publicHandlerPost = async () => {
+    console.log('post post');
     if (id) {
       start();
       await updatePost(id, description).then(async () => {
@@ -248,7 +249,19 @@ function AddPostSecondStep() {
           for await (let element of checkedItems) {
             const id = await findVideoOrImageByStore(element.id);
             let filename = Platform.OS === 'ios' ? id.localUri.split('/').pop() : id.uri.split('/').pop();
-
+            const alertTitle = t('alertTitle');
+            const alertMessage = t('fastMessageText');
+             if (Platform.OS === 'ios' && (String(filename).includes('.heic') || String(filename).includes('.HEIC'))) {
+               Alert.alert(
+                 alertTitle,
+                 alertMessage,
+                 [
+                   { text: 'OK'}
+                 ],
+                 { cancelable: false }
+               );
+               stop();
+             }
             let match = /\.(\w+)$/.exec(filename);
             let nameType = 'image';
             if (match[1].toLowerCase() === 'mov' || match[1].toLowerCase() === 'mp4' || match[1].toLowerCase() === 'avi') {
@@ -262,10 +275,15 @@ function AddPostSecondStep() {
         if (links?.length) {
           let otherElements = [...links];
           let first = otherElements.shift();
+          console.log('firest');
           const idFirst = await addNewPost(first);
+          console.log(idFirst.status);
           if (otherElements?.length) {
+            console.log('keksecond');
             for await (let otherElement of otherElements) {
-              await addNewPost(otherElement, idFirst);
+              console.log('addpost');
+             const t =  await addNewPost(otherElement, idFirst);
+              console.log(t);
             }
           }
           await editPost(idFirst, desc).then(async () => {

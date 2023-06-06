@@ -304,7 +304,7 @@ function AddWish({ navigation, ...props }) {
               {isEdit ? t('addWishText1') : t('addWishText2')}
             </Text>
             <Box marginTop="35px" width="100%" flexDirection="row" justifyContent="space-between" alignItems="center">
-              <Text fontSize="15px">Фотографии (до 5 шт)</Text>
+              <Text fontSize="15px">{t('photoAddWishText')}</Text>
               <Text onPress={choseImage} color={COLORS.purple} fontFamily="NunitoBold" fontSize="15px">Добавить</Text>
             </Box>
             <ImagesChose deletePhoto={deletePhoto} images={images} />

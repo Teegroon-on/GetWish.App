@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, TextInput, InteractionManager } from 'react-native';
+import { StyleSheet, TextInput, View, Text } from 'react-native';
 import AuthStep from './AuthStep';
 import AuthButton from '../Shared/AuthButton';
 import { AuthContext } from '../../screens/Auth/AuthScreen';
@@ -24,62 +24,29 @@ function EnterCodeStep({ isChangePhone }) {
   const {
     data, handleChangeObject, onNextStep, step
   } = React.useContext(AuthContext);
-  const t = useI18n()
+  const t = useI18n();
   const { show } = useToasts(2000, t('profile_phoneChanged'));
-  const [codes, setCodes] = React.useState(['', '', '', '']);
-  const handleChangeInput = (text, index) => {
-    setCodes((prev) => {
-      const newArr = [...prev];
-      newArr[index] = text;
-      return newArr;
-    });
-    if (text) {
-      const idx = index + 1;
-      if (codes[idx] !== undefined) {
-        if (index === 0) state1?.focus();
-        else if (index === 1) state2?.focus();
-        else state3?.focus();
-      } else {
-        handleChangeObject('codes', [...codes, text].join(''));
+  const [codes, setCodes] = React.useState('');
+
+  const handleChange = (text) => {
+    if (text.length <= 4) {
+      setCodes(text);
+      if (text.length === 4) {
+        handleChangeObject('codes', text);
       }
     }
   };
 
   const [error, setError] = React.useState(false);
-  const [state, setState] = React.useState({});
-  const [state1, setState1] = React.useState({});
-  const [state2, setState2] = React.useState({});
-  const [state3, setState3] = React.useState({});
-
-  React.useEffect(() => {
-    if (Object.keys(state).length !== 0) {
-      InteractionManager.runAfterInteractions(() => {
-        state.focus();
-      });
-    }
-  }, [state, step]);
-
-  const handleKeyPress = (keyValue, index) => {
-    if (keyValue === 'Backspace' && index !== 0 && !codes[index]) {
-      const idx = index - 1;
-      if (index === 3) state2?.focus();
-      else if (index === 2) state1?.focus();
-      else state?.focus();
-      const newCodes = [...codes];
-      newCodes[idx] = '';
-      setCodes(newCodes);
-    }
-  };
 
   let disabledNext = true;
 
-  codes.forEach((el) => {
-    disabledNext = !el;
-  });
+  if (codes.length === 4) {
+    disabledNext = false;
+  }
 
   const clearCode = () => {
-    setCodes(['', '', '', '']);
-    state?.focus();
+    setCodes('');
     setError(true);
   };
 
@@ -87,14 +54,14 @@ function EnterCodeStep({ isChangePhone }) {
     const phoneNumber = data.phoneNumber.split(' ').join('');
     if (!disabledNext) {
       if (isChangePhone) {
-        await updatePhone(`+7${phoneNumber}`, codes.join('')).then(async () => {
+        await updatePhone(`+${data.countryCode}${phoneNumber}`, codes).then(async () => {
           navigateAction('MainProfile');
           show();
         }).catch(() => {
           clearCode();
         });
       } else {
-        await checkCode(`+7${phoneNumber}`, codes.join('')).then(async () => {
+        await checkCode(`+${data.countryCode}${phoneNumber}`, codes).then(async () => {
           onNextStep();
         }).catch(() => {
           clearCode();
@@ -103,31 +70,43 @@ function EnterCodeStep({ isChangePhone }) {
     }
   };
 
+  const styles = StyleSheet.create({
+    inputStyle: {
+      height: 0,
+      width: 0,
+      opacity: 0,
+    },
+    codeBox: {
+      fontFamily: 'Nunito',
+      fontWeight: '600',
+      color: COLORS.black,
+      fontSize: 27,
+      width: 30,
+      height: 30,
+      paddingLeft: 5,
+      marginTop: 0,
+      textAlign: 'center',
+    },
+  });
+
   return (
-    <AuthStep back mt={44} maxWidth={276} text={t('auth_codeWasSend')} title={`+7 ${data.phoneNumber}`}>
+    <AuthStep back mt={44} maxWidth={276} text={t('auth_codeWasSend')} title={`+${data.countryCode} ${data.phoneNumber}`}>
       <EnterCodeStepContainer>
+        <TextInput
+          onChangeText={handleChange}
+          value={codes}
+          maxLength={4}
+          keyboardType="numeric"
+          style={styles.inputStyle}
+          autoFocus
+        />
         <Codes>
-          {codes.map((code, index) => (
-            // eslint-disable-next-line react/no-array-index-key
+          {[0, 1, 2, 3].map((index) => (
             <CodeElement key={index}>
               {!codes[index] && <CodePlaceholder error={error && '#FFDEDE'} />}
-              <TextInput
-                ref={(input) => {
-                  if (index === 0) setState(input);
-                  else if (index === 1) setState1(input);
-                  else if (index === 2) setState2(input);
-                  else setState3(input);
-                }}
-                textContentType="telephoneNumber"
-                maxLength={1}
-                onKeyPress={({ nativeEvent: { key: keyValue } }) => handleKeyPress(keyValue, index)}
-                onChangeText={(text) => handleChangeInput(text, index)}
-                id={String(index)}
-                keyboardType="numeric"
-                autoFocus={index === 0}
-                style={styles.inputStyle}
-                value={code}
-              />
+              <Text style={styles.codeBox}>
+                {codes[index] || ""}
+              </Text>
             </CodeElement>
           ))}
         </Codes>
@@ -140,19 +119,6 @@ function EnterCodeStep({ isChangePhone }) {
     </AuthStep>
   );
 }
-
-const styles = StyleSheet.create({
-  inputStyle: {
-    fontFamily: 'Nunito',
-    fontWeight: '600',
-    width: 30,
-    height: 30,
-    color: COLORS.black,
-    paddingLeft: 5,
-    marginTop: 0,
-    fontSize: 27,
-  }
-});
 
 EnterCodeStep.propTypes = {
   isChangePhone: PropTypes.bool,

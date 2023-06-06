@@ -1,30 +1,40 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
 import {
   Actionsheet, Box, Radio, Text
 } from 'native-base';
-import { useSelector } from 'react-redux';
 import Toast from 'react-native-toast-message';
 import {
   ActionDesires,
 } from '../../styles/profile';
 import { COLORS } from '../../functions/constants';
 import AuthButton from '../Shared/AuthButton';
-import { reserveWish } from '../../redux/actions/wishListActions';
 import { useI18n } from '../../i18n/i18n';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-function PostsActionsheet({
-  open, setOpen
-}) {
+function PostsActionsheet() {
+  const [open, setOpen] = useState(false);
 
   const t = useI18n();
   const firstText = t('add_post_text');
   const secondText = t('add_post_second_text');
   const buttonText = t('understandable');
   const createPost = t('createPostText');
-  const handleClose = () => {
+
+  const handleClose = async () => {
+    await AsyncStorage.setItem('popUpAddPost', 'false');
     setOpen(false);
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await AsyncStorage.getItem('popUpAddPost');
+      if (result !== 'false') {
+        setOpen(true);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <Actionsheet
@@ -51,7 +61,7 @@ function PostsActionsheet({
           <AuthButton
             style={{ marginTop: 25, alignSelf: 'center' }}
             active
-            onPress={() => setOpen(false)}
+            onPress={handleClose}
           >
             {buttonText}
           </AuthButton>
@@ -60,10 +70,5 @@ function PostsActionsheet({
     </Actionsheet>
   );
 }
-
-PostsActionsheet.propTypes = {
-  open: PropTypes.bool.isRequired,
-  setOpen: PropTypes.func.isRequired,
-};
 
 export default PostsActionsheet;

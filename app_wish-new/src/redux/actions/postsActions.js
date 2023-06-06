@@ -10,6 +10,10 @@ import {dataURItoBlob} from "../../functions/helpers";
 import {FileSystemSessionType} from "expo-file-system";
 
 export const addNewPost = async (file, id) => {
+  console.log('kek');
+  console.log(file);
+  console.log('kek1');
+  console.log(id);
   let token = `Bearer ${await AsyncStorage.getItem('token')}`;
   return new Promise((resolve) => {
     FileSystem.uploadAsync(`http://195.24.67.42/api/v1/post/attachment/upload`, file?.uri, {
@@ -27,8 +31,10 @@ export const addNewPost = async (file, id) => {
       uploadType: FileSystem.FileSystemUploadType.MULTIPART,
       sessionType: FileSystemSessionType.BACKGROUND,
     }).then((response) => {
+      console.log('res');
+      console.log(response);
+      console.log('res');
       const answer = JSON.parse(response.body);
-      console.log(answer);
       resolve(answer.data.id)
     })
         .catch((error) => {

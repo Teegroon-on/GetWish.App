@@ -5,6 +5,7 @@ import CountryPicker from 'react-native-country-picker-modal';
 import { AuthContext } from '../../screens/Auth/AuthScreen';
 import { PhoneContainer, PhonePrefix } from '../../styles/authSteps';
 import { COLORS } from '../../functions/constants';
+import i18n from 'i18next';
 
 function PhoneNumber() {
   const { data, handleChangeObject } = useContext(AuthContext);
@@ -13,13 +14,13 @@ function PhoneNumber() {
   const [country, setCountry] = React.useState(null);
   const [visible, setVisible] = React.useState(false);
   const [mask, setMask] = React.useState('999 999 99 99');
+  const language = i18n.language === 'ru' ? 'rus' : 'common';
 
   const getMaskByCountryCode = (cca2) => {
     const masks = {
       AC: '9999',
       AD: '999 999',
-      AE: '9 999 9999',
-      AE: '9 999 9999',
+      AE: '99 999 9999',
       AF: '99 999 9999',
       AG: '999 9999',
       AI: '999 9999',
@@ -318,7 +319,7 @@ function PhoneNumber() {
   const onSelect = (country) => {
     setCountryCode(country.cca2);
     setCountry(country);
-    handleChangeObject('countryCode', country ? country.callingCode[0] : '+7');
+    handleChangeObject('countryCode', country ? country.callingCode[0] : '7');
     setVisible(false);
     setMask(getMaskByCountryCode(country.cca2));
   };
@@ -329,7 +330,7 @@ function PhoneNumber() {
 
   React.useEffect(() => {
     if (Object.keys(state).length !== 0) {
-      handleChangeObject('countryCode', country ? country.callingCode[0] : '+7');
+      handleChangeObject('countryCode', country ? country.callingCode[0] : '7');
       InteractionManager.runAfterInteractions(() => {
         state.focus();
       });
@@ -343,8 +344,18 @@ function PhoneNumber() {
           countryCode,
           onSelect,
           withCallingCode: true,
-          translation: 'rus',
+          translation: language,
+          withFilter: true,
           visible,
+          filterProps: {
+            autoFocus: true,
+            placeholder: i18n.t('enterCountry'),
+            placeholderTextColor: '#000',
+            style: {
+              opacity: '50%',
+              height: 40,
+            },
+          },
         }}
       />
       <PhonePrefix onPress={openModal} fz={Platform.OS === 'android' ? 27 : 30}>{country ? `+${country.callingCode}` : '+7'}</PhonePrefix>

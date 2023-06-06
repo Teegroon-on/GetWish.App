@@ -78,6 +78,7 @@ export const getThemes = async () => {
         type: ADD_THEMES,
         payload: data?.data
       });
+      console.log(data);
       resolve(data?.data);
     }).catch((error) => {
       reject(parseError(error));

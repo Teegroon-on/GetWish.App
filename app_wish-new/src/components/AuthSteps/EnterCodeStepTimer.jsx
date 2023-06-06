@@ -26,7 +26,7 @@ function EnterCodeStepTimer() {
 
   const handleSendCodeAgain = async () => {
     const phoneNumber = data.phoneNumber.split(' ').join('');
-    await sendCode(`+7${phoneNumber}`);
+    await sendCode(`+${data.countryCode}${phoneNumber}`);
     setSeconds(60);
   };
 

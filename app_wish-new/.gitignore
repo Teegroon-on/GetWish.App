@@ -61,7 +61,7 @@ buck-out/
 .expo/
 web-build/
 dist/
-
+yarn.lock
 # @end expo-cli
 
 ios

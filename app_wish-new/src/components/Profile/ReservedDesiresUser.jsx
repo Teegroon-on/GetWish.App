@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  HStack, Image, Pressable, Text
+  HStack, Image, Pressable, Text, Box
 } from 'native-base';
 import { useActionSheet } from '@expo/react-native-action-sheet';
 import { Platform } from 'react-native';
@@ -24,7 +24,6 @@ function ReservedDesiresUser({
 
   function RenderImage(wish) {
     if (wish) {
-      // eslint-disable-next-line react/destructuring-assignment
       if (wish?.image) {
         return <Image borderRadius={10} size={68} source={{ uri: wish?.image }} />;
       }
@@ -41,11 +40,13 @@ function ReservedDesiresUser({
       }}
     >
       <ReservedDesiresUserContainer
-        imageStyle={{ borderRadius: 10 }}
-        resizeMode="cover"
         style={Platform.OS === 'android' && androidShadow}
-        source={el?.theme?.card ? { uri: el?.theme?.card } : require('../../assets/images/icons/users/theme.png')}
       >
+        <Image
+          source={el?.theme?.card ? { uri: el?.theme?.card } : require('../../assets/images/icons/users/theme.png')}
+          alt="background"
+          style={{position: "absolute", width: "108%", height: "126%", resizeMode: "cover", borderRadius: "10px"}}
+        />
         <HStack justifyContent="space-between" width="100%">
           <ReservedDesiresUserTitle>
             <Text>{el?.theme?.symbol || '🎄'}</Text>
@@ -86,4 +87,6 @@ function ReservedDesiresUser({
     </Pressable>
   );
 }
+
+
 export default ReservedDesiresUser;

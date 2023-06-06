@@ -220,7 +220,7 @@ function AddWishList({ navigation, ...props }) {
             {loading ? <Spinner /> : privateWishList && (
             <View width="100%" paddingTop={30}>
               <View width="100%" flexDirection="row" display="flex" height="22px" justifyContent="space-between">
-                <Text width="110px" fontSize={15}>
+                <Text width="110px" fontSize={14}>
                   {selectedFriends?.length ? t('availableFor') : t('availableWho')}
                   :
                 </Text>

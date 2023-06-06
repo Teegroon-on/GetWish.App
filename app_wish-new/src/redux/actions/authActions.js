@@ -44,6 +44,7 @@ export const checkAvailability = async (username) => {
 };
 
 export const checkCode = async (phone, code) => {
+  await AsyncStorage.setItem('popUpAddPost', 'true');
   // eslint-disable-next-line no-async-promise-executor
   return new Promise(async (resolve, reject) => {
     await $host.post('/api/v1/auth/code/check', {
