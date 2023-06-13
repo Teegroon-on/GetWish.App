@@ -31,6 +31,12 @@ function ProfileScreen({ navigation }) {
 
   const t = useI18n()
   const { userInfo, reservedWishList } = useSelector((state) => state.user);
+  console.log('kek');
+  console.log('kek');
+  console.log('kek');
+  console.log('kek');
+  console.log('kek');
+  console.log(userInfo);
 
   React.useEffect(() => {
     (async function () {

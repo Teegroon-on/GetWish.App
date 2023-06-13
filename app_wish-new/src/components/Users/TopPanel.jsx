@@ -81,7 +81,7 @@ function TopPanel() {
           </Box>
           <Box paddingRight="22.5px" paddingLeft="22.5px">
             <Text fontSize={15} fontWeight="bold" textAlign="center">{oneUser?.posts}</Text>
-            <Text fontSize={13} textAlign="center">{declOfNum(oneUser?.posts, [t('desires_Posts'), t('desires_Posts2'), t('desires_Posts3')])}</Text>
+            <Text fontSize={13} textAlign="center">{declOfNum(oneUser?.posts, [t('desires_Posts'), t('desires_Posts1'), t('desires_Post2')])}</Text>
           </Box>
           <Box paddingRight="22.5px" paddingLeft="22.5px">
             <Text fontSize={15} fontWeight="bold" textAlign="center">{oneUser?.wishes}</Text>

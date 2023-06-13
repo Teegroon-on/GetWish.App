@@ -5,10 +5,12 @@ import {
 import { Dimensions } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { COLORS } from '../../functions/constants';
+import i18n from 'i18next';
 
 function TutorialFriendWishList({ setShowTutorial }) {
   const { height } = Dimensions.get('screen');
   const smallSmart = height <= 800;
+  const language = i18n.language === 'ru' ? 'rus' : 'common';
   return (
     <Box zIndex={999999} style={{ elevation: 2 }} position="absolute" width="100%" height="100%" backgroundColor={COLORS.black3}>
       <ScrollView height="100%" width="100%">
@@ -36,8 +38,17 @@ function TutorialFriendWishList({ setShowTutorial }) {
               width="18px"
             />
           </Pressable>
-          <Image marginTop={smallSmart ? '10%' : '20%'} alignSelf="center" width="306px" height="412px" source={require('../../assets/images/icons/users/tutorial.png')} />
-          <Image marginTop="70px" alignSelf="center" width="100%" maxWidth="335px" height="169px" source={require('../../assets/images/icons/users/tutorial_image.png')} />
+          {language === 'rus' ? (
+            <>
+              <Image marginTop={smallSmart ? '10%' : '20%'} alignSelf="center" width="306px" height="412px" source={require('../../assets/images/icons/users/tutorial.png')} />
+              <Image marginTop="70px" alignSelf="center" width="100%" maxWidth="335px" height="169px" source={require('../../assets/images/icons/users/tutorial_image.png')} />
+            </>
+          ) : (
+            <>
+              <Image marginTop={smallSmart ? '10%' : '20%'} alignSelf="center" width="306px" height="412px" source={require('../../assets/images/icons/users/tutorialEng.png')} />
+              <Image marginTop="70px" alignSelf="center" width="100%" maxWidth="335px" height="169px" source={require('../../assets/images/icons/users/tutorialImgEng.png')} />
+            </>
+          )}
         </VStack>
       </ScrollView>
     </Box>

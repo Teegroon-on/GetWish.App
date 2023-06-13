@@ -5,10 +5,12 @@ import {
 import { Dimensions } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { COLORS } from '../../functions/constants';
+import i18n from 'i18next';
 
 function TutorialPosts({ setShowTutorial }) {
   const { height } = Dimensions.get('screen');
   const smallSmart = height <= 800;
+  const language = i18n.language === 'ru' ? 'rus' : 'common';
   return (
     <Box zIndex={999999} style={{ elevation: 2 }} position="absolute" width="100%" height="100%" backgroundColor={COLORS.black3}>
       <ScrollView height="100%" width="100%">
@@ -24,11 +26,11 @@ function TutorialPosts({ setShowTutorial }) {
             position="absolute"
             onPress={async () => {
               await AsyncStorage.setItem(
-                'showTutorialPosts',
-                'true'
+               'showTutorialPosts',
+               'true'
               );
               setShowTutorial(false);
-            }}
+             }}
           >
             <Image
               source={require('../../assets/images/icons/users/close.png')}
@@ -36,7 +38,11 @@ function TutorialPosts({ setShowTutorial }) {
               width="18px"
             />
           </Pressable>
-          <Image marginTop={smallSmart ? '10%' : '25%'} alignSelf="center" width="350px" height="541px" source={require('../../assets/images/icons/posts/tutorial_top.png')} />
+          {language === 'rus' ? (
+            <Image marginTop={smallSmart ? '10%' : '25%'} alignSelf="center" width="350px" height="541px" source={require('../../assets/images/icons/posts/tutorial_top.png')} />
+          ) : (
+            <Image marginTop={smallSmart ? '10%' : '25%'} alignSelf="center" width="350px" height="541px" source={require('../../assets/images/icons/posts/tutorialTopEng.png')} />
+          )}
             <Pressable onPress={async () => {
                 await AsyncStorage.setItem(
                     'showTutorialPosts',
@@ -44,7 +50,7 @@ function TutorialPosts({ setShowTutorial }) {
                 );
                 setShowTutorial(false);
             }}>
-                <Image marginTop="25%" alignSelf="center" width="100%" maxWidth="335px" height="50px" source={require('../../assets/images/icons/posts/tutorial_bottom.png')} />
+              friend_plurals
             </Pressable>
         </VStack>
       </ScrollView>
