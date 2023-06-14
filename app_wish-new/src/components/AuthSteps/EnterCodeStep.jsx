@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, TextInput, View, Text } from 'react-native';
+import { StyleSheet, TextInput, View, Text, TouchableWithoutFeedback } from 'react-native';
 import AuthStep from './AuthStep';
 import AuthButton from '../Shared/AuthButton';
 import { AuthContext } from '../../screens/Auth/AuthScreen';
@@ -38,6 +38,7 @@ function EnterCodeStep({ isChangePhone }) {
   };
 
   const [error, setError] = React.useState(false);
+  const textInputRef = useRef(null);
 
   let disabledNext = true;
 
@@ -72,9 +73,14 @@ function EnterCodeStep({ isChangePhone }) {
 
   const styles = StyleSheet.create({
     inputStyle: {
-      height: 0,
-      width: 0,
-      opacity: 0,
+      backgroundColor: 'transparent',
+      fontSize: 60,
+      position: 'absolute',
+      color: '#ffffff',
+      width: '100%',
+      paddingLeft: 5,
+      height: '100%',
+      fontWeight: '600',
     },
     codeBox: {
       fontFamily: 'Nunito',
@@ -92,24 +98,28 @@ function EnterCodeStep({ isChangePhone }) {
   return (
     <AuthStep back mt={44} maxWidth={276} text={t('auth_codeWasSend')} title={`+${data.countryCode} ${data.phoneNumber}`}>
       <EnterCodeStepContainer>
-        <TextInput
-          onChangeText={handleChange}
-          value={codes}
-          maxLength={4}
-          keyboardType="numeric"
-          style={styles.inputStyle}
-          autoFocus
-        />
-        <Codes>
-          {[0, 1, 2, 3].map((index) => (
-            <CodeElement key={index}>
-              {!codes[index] && <CodePlaceholder error={error && '#FFDEDE'} />}
-              <Text style={styles.codeBox}>
-                {codes[index] || ""}
-              </Text>
-            </CodeElement>
-          ))}
-        </Codes>
+        <TouchableWithoutFeedback onPress={() => textInputRef.current.focus()}>
+          <Codes>
+            <TextInput
+              ref={textInputRef}
+              onChangeText={handleChange}
+              value={codes}
+              maxLength={4}
+              keyboardType="numeric"
+              style={styles.inputStyle}
+              autoFocus
+              selectionColor={"black"} // This will make the cursor black on Android
+            />
+            {[0, 1, 2, 3].map((index) => (
+              <CodeElement key={index}>
+                {!codes[index] && <CodePlaceholder error={error && '#FFDEDE'} />}
+                <Text style={styles.codeBox}>
+                  {codes[index] || ""}
+                </Text>
+              </CodeElement>
+            ))}
+          </Codes>
+        </TouchableWithoutFeedback>
         {error && <CodeTextError>{t('auth_errorInvalidCode')}</CodeTextError>}
         <EnterCodeStepBottom>
           <EnterCodeStepTimer />
