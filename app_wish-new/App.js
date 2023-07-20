@@ -27,11 +27,11 @@ function App() {
   React.useEffect(() => {
     (async function Start() {
       setLoadingApp(true);
-      await Font.loadAsync(customFonts);
+      await Font.loadAsync(customFonts).then(() => console.log("Fonts loaded"));
       setTimeout(async () => {
         await SplashScreen.hideAsync();
         setLoadingApp(false);
-      }, 15000);
+      }, 2000);
     }());
   }, []);
 

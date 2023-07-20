@@ -35,9 +35,9 @@ function AppRouter() {
     }());
   }, []);
 
-  if (loading) {
+  /* if (loading) {
     return <Text>{t('loading')}</Text>;
-  }
+  } */
 
   return (
     <>
