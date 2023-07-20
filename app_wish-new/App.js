@@ -31,7 +31,7 @@ function App() {
       setTimeout(async () => {
         await SplashScreen.hideAsync();
         setLoadingApp(false);
-      }, 2000);
+      }, 15000);
     }());
   }, []);
 

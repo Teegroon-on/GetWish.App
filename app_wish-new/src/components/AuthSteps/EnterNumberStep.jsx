@@ -10,18 +10,24 @@ import {useI18n} from "../../i18n/i18n";
 import {Platform} from "react-native";
 import {COLORS} from "../../functions/constants";
 import {KeyboardAvoidingView} from "native-base";
-import {NavigationActions as navigation} from "react-navigation";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Linking } from 'react-native';
 
 function EnterNumberStep({ isChangePhone }) {
   const { data, onNextStep } = useContext(AuthContext);
+  const [loading, setLoading] = React.useState(false);
+  const [isBlocked, setIsBlocked] = React.useState(false);
   const onPressNumberStep = async () => {
+    if (isBlocked) {
+      return;
+    }
+
+    setIsBlocked(true);
+    setLoading(true);
     const phoneNumber = data.phoneNumber.split(' ').join('');
     const t = await sendCode(`+${data.countryCode}${phoneNumber}`);
     onNextStep();
-   /*  if (phoneNumber.length >= 10) {
-
-    } */
+    setLoading(false);
+    setTimeout(() => setIsBlocked(false), 500);  // разблокировать через 500 мс
   };
 
   const t = useI18n()
@@ -41,17 +47,20 @@ function EnterNumberStep({ isChangePhone }) {
               title={t('auth_enterPhoneTitle')}>
       <PhoneNumber />
       {!isChangePhone && (
-      <TextOffer>
+        <TextOffer  onPress={() =>
+          Linking.openURL('https://doc-hosting.flycricket.io/getwish-privacy-policy/c947c99a-cbcb-4b82-ac58-878c67012c3e/privacy')
+        }>
           {tosText[0]}
-        <TextOfferPurple>
-            {tosText[1]}
-        </TextOfferPurple>
-      </TextOffer>
+          <TextOfferPurple>
+              {tosText[1]}
+          </TextOfferPurple>
+        </TextOffer>
       )}
       <AuthButton
+        loading={loading}
         style={{ marginTop: isChangePhone ? 100 : 0 }}
         onPress={onPressNumberStep}
-        active={!disabledNext}
+        active={!disabledNext && !loading && !isBlocked}
       >
           {t('auth_getCode')}
       </AuthButton>

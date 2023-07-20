@@ -2,7 +2,14 @@ import { $authHost } from '../../http';
 import store from '../index';
 import {
   DELETE_COMMENT,
-  LIKE, REMOVE_POST, SET_COMMENTS, SET_POSTS_FOR_LENTA, SET_POSTS_USER, SET_POSTS_USER_OTHER, UNLIKE
+  LIKE,
+  REMOVE_POST, REPORT_POST_FAILURE, REPORT_POST_SUCCESS, REPORT_STATUS_RESET, reportPostFailure,
+  reportPostRequest, reportPostSuccess,
+  SET_COMMENTS,
+  SET_POSTS_FOR_LENTA,
+  SET_POSTS_USER,
+  SET_POSTS_USER_OTHER,
+  UNLIKE
 } from '../constants/postsConstants';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as FileSystem from 'expo-file-system';
@@ -10,10 +17,6 @@ import {dataURItoBlob} from "../../functions/helpers";
 import {FileSystemSessionType} from "expo-file-system";
 
 export const addNewPost = async (file, id) => {
-  console.log('kek');
-  console.log(file);
-  console.log('kek1');
-  console.log(id);
   let token = `Bearer ${await AsyncStorage.getItem('token')}`;
   return new Promise((resolve) => {
     FileSystem.uploadAsync(`http://195.24.67.42/api/v1/post/attachment/upload`, file?.uri, {
@@ -71,6 +74,28 @@ export const getPostsForLenta = async (limit = 5) => {
     resolve(res?.data);
   });
 };
+
+export const reportPost = async (postId, reportText) => {
+  const requestBody = {
+    post_id: postId,
+    report_text: reportText
+  };
+  return new Promise((resolve, reject) => {
+    $authHost.post('/api/v1/post/report', requestBody).then((response) => {
+      store.dispatch({ type: REPORT_POST_SUCCESS });
+      resolve(response);
+    }).catch((error) => {
+      console.error("Error: ", error);
+      store.dispatch({ type: REPORT_POST_FAILURE });
+      reject(error);
+    });
+  });
+};
+
+export const resetReportStatus = () => ({
+  type: REPORT_STATUS_RESET
+});
+
 
 export const getOnePost = async (id) => {
   return new Promise((resolve) => {

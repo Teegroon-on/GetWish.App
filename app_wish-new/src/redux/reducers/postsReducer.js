@@ -1,6 +1,13 @@
 import {
   DELETE_COMMENT,
-  LIKE, REMOVE_POST, SET_COMMENTS, SET_POSTS_FOR_LENTA, SET_POSTS_USER, SET_POSTS_USER_OTHER, UNLIKE
+  LIKE,
+  REMOVE_POST, REPORT_POST_FAILURE,
+  REPORT_POST_REQUEST, REPORT_POST_SUCCESS, REPORT_STATUS_RESET, RESET_REPORT_STATUS,
+  SET_COMMENTS,
+  SET_POSTS_FOR_LENTA,
+  SET_POSTS_USER,
+  SET_POSTS_USER_OTHER,
+  UNLIKE
 } from '../constants/postsConstants';
 import {GO_BACK_TO_COMMENTS} from "../constants/userConstants";
 
@@ -9,7 +16,8 @@ const initialState = {
   lentaPosts: [],
   comments: [],
   otherUserPosts: [],
-  goToComments: {}
+  goToComments: {},
+  reportStatus: null,
 };
 
 // eslint-disable-next-line default-param-last
@@ -94,6 +102,21 @@ export const postsReducer = (state = initialState, action) => {
       return {
         ...state,
         [targetUnlike]: arrayUnlike
+      };
+    case REPORT_POST_SUCCESS:
+      return {
+        ...state,
+        reportStatus: 'success',
+      };
+    case REPORT_POST_FAILURE:
+      return {
+        ...state,
+        reportStatus: 'failure',
+      };
+    case REPORT_STATUS_RESET:
+      return {
+        ...state,
+        reportStatus: 'idle',
       };
 
     default:

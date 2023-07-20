@@ -15,7 +15,6 @@ import useReload from '../../hooks/useReload';
 import { delay } from '../../functions';
 import {goToComments, goToLikes, goToUserProfile, isVideo} from '../../functions/helpers';
 import {convertComment, convertComment2} from '../../functions/dates2';
-import { TextParser } from '../index';
 import { ActionSheets } from '../../functions/ActionSheet';
 import { useI18n } from '../../i18n/i18n';
 import {changeUserInfo} from "../../redux/actions/authActions";

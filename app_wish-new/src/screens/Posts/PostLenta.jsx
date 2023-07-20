@@ -1,21 +1,41 @@
 import React, {useState} from 'react';
 import {FlatList, ScrollView, View} from 'native-base';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RefreshControl } from 'react-native';
 import { COLORS } from '../../functions/constants';
 import PostBody from '../../components/Posts/PostBody';
 import EmptyPost from '../../components/Posts/EmptyPost';
-import { getMyWishLists, getPostsForLenta } from '../../redux/actions/postsActions';
+import {
+  getMyWishLists,
+  getPostsForLenta,
+  resetReportStatus
+} from '../../redux/actions/postsActions';
+import Toast from 'react-native-toast-message';
+import { t } from 'i18next';
+
 
 function PostLenta({ empty = true }) {
-  const { lentaPosts } = useSelector((state) => state.posts);
+  const { lentaPosts, reportStatus } = useSelector((state) => state.posts);
   const [refreshing, setRefreshing] = React.useState(false);
   const [take, setTake] = useState(5)
   const onRefresh = React.useCallback(async () => {
     setRefreshing(true);
       await getPostsForLenta(5).then(() => setRefreshing(false));
   }, []);
+  const dispatch = useDispatch();
 
+  React.useEffect(() => {
+    if(reportStatus === 'success') {
+      getPostsForLenta(take);
+      dispatch(resetReportStatus());
+      Toast.show({
+        type: 'search',
+        text1: t('successReport'),
+        position: 'bottom',
+        bottomOffset: 95
+      })
+    }
+  }, [reportStatus]);
   const loadMore = async () => {
       setTake((prevState => prevState + 5))
       await getPostsForLenta(take);

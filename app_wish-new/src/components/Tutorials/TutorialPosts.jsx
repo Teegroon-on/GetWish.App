@@ -50,7 +50,11 @@ function TutorialPosts({ setShowTutorial }) {
                 );
                 setShowTutorial(false);
             }}>
-              friend_plurals
+              {language === 'rus' ? (
+                <Image marginTop="25%" alignSelf="center" width="100%" maxWidth="335px" height="50px" source={require('../../assets/images/icons/posts/tutorial_bottom.png')} />
+              ) : (
+                <Image marginTop="25%" alignSelf="center" width="100%" maxWidth="335px" height="50px" source={require('../../assets/images/icons/posts/bottom_eng.png')} />
+              )}
             </Pressable>
         </VStack>
       </ScrollView>

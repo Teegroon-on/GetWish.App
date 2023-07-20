@@ -2,7 +2,7 @@
   "expo": {
     "name": "getwish",
     "slug": "getwish",
-    "version": "1.0.4",
+    "version": "1.0.15",
     "jsEngine": "hermes",
     "orientation": "portrait",
     "icon": "./src/assets/icon.png",
@@ -22,14 +22,21 @@
         "foregroundImage": "./src/assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.wish_list"
+      "package": "com.wish_list",
+      "versionCode": 4,
+      "permissions": ["CAMERA", "READ_EXTERNAL_STORAGE", "WRITE_EXTERNAL_STORAGE"]
     },
     "web": {
       "favicon": "./src/assets/favicon.png"
     },
     "ios": {
+      "jsEngine": "jsc",
       "bundleIdentifier": "com.getwish",
-      "jsEngine": "jsc"
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app requires access to the camera to take photos to upload your profile photo.",
+        "NSPhotoLibraryUsageDescription": "This app requires access to the photo library to upload your photo to the your posts.",
+      },
+      "buildNumber": "1.0.15.3"
     },
     "extra": {
       "eas": {
