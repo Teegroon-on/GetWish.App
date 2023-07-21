@@ -16,12 +16,14 @@ function AuthScreen(props) {
   const dispatch = useDispatch();
   const { nickname } = useSelector((state) => state.user);
   const { screenProps, navigation } = props;
+  const [loading, setLoading] = React.useState(true);
   const [step, setStep] = React.useState(0);
   const [data, setData] = React.useState({
     id: '',
     phoneNumber: '',
     codes: '',
-    username: ''
+    username: '',
+    countryCode: '',
   });
 
   const Step = StepsComponents[step];
@@ -46,9 +48,11 @@ function AuthScreen(props) {
   const t = useI18n()
 
   React.useEffect(() => {
+    setLoading(true);
     if (nickname) {
       setStep(2);
     }
+    setLoading(false);
   }, [screenProps]);
 
   const params = React.useMemo(() => ({
@@ -57,7 +61,9 @@ function AuthScreen(props) {
 
   return (
     <AuthContext.Provider value={params}>
+      {loading ? <Text>{t('loading')}</Text> : (
         <Step />
+      )}
     </AuthContext.Provider>
   );
 }

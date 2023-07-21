@@ -27,7 +27,7 @@ function EnterNumberStep({ isChangePhone }) {
     const t = await sendCode(`+${data.countryCode}${phoneNumber}`);
     onNextStep();
     setLoading(false);
-    setTimeout(() => setIsBlocked(false), 500);  // разблокировать через 500 мс
+    setTimeout(() => setIsBlocked(false), 500);
   };
 
   const t = useI18n()
@@ -52,7 +52,7 @@ function EnterNumberStep({ isChangePhone }) {
         }>
           {tosText[0]}
           <TextOfferPurple>
-              {tosText[1]}
+              {'TESThere'}
           </TextOfferPurple>
         </TextOffer>
       )}
