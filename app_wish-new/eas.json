@@ -5,20 +5,15 @@
   "build": {
     "development": {
       "developmentClient": true,
-      "distribution": "internal",
-      "ios": {
-        "resourceClass": "m-medium"
-      }
+      "distribution": "internal"
     },
     "preview": {
-      "distribution": "internal",
-      "ios": {
-        "resourceClass": "m-medium"
-      }
+      "distribution": "internal"
     },
     "production": {
-      "ios": {
-        "resourceClass": "m-medium"
+      "env": {
+        "EAS_BUILD_DISABLE_NPM_CACHE": "1",
+        "EAS_BUILD_DISABLE_COCOAPODS_CACHE": "1"
       }
     }
   },
