@@ -5,7 +5,7 @@ import { AuthContext } from '../../screens/Auth/AuthScreen';
 import { PhoneContainer, PhonePrefix } from '../../styles/authSteps';
 import { COLORS } from '../../functions/constants';
 import i18n from 'i18next';
-import { CountryPicker } from 'react-native-country-codes-picker';
+import { CountryPicker } from 'react-native-country-picker-modal/lib/CountryPicker';
 
 function PhoneNumber() {
   const { data, handleChangeObject } = useContext(AuthContext);
