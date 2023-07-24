@@ -12,7 +12,8 @@
       "backgroundColor": "#ffffff"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/f5879f84-7eff-49bc-bd6e-0f396a1c34b0"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -24,7 +25,11 @@
       },
       "package": "com.wish_list",
       "versionCode": 5,
-      "permissions": ["CAMERA", "READ_EXTERNAL_STORAGE", "WRITE_EXTERNAL_STORAGE"]
+      "permissions": [
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE"
+      ]
     },
     "web": {
       "favicon": "./src/assets/favicon.png"
@@ -33,14 +38,17 @@
       "bundleIdentifier": "com.getwish",
       "infoPlist": {
         "NSCameraUsageDescription": "This app requires access to the camera to take photos to upload your profile photo.",
-        "NSPhotoLibraryUsageDescription": "This app requires access to the photo library to upload your photo to the your posts.",
+        "NSPhotoLibraryUsageDescription": "This app requires access to the photo library to upload your photo to the your posts."
       },
-      "buildNumber": "2.2"
+      "buildNumber": "2.3"
     },
     "extra": {
       "eas": {
         "projectId": "f5879f84-7eff-49bc-bd6e-0f396a1c34b0"
       }
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
     }
   }
 }

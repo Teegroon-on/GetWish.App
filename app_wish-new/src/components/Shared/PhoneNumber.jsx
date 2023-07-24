@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import { StyleSheet, InteractionManager, Platform } from 'react-native';
 import { MaskedTextInput } from 'react-native-mask-text';
-import CountryPicker from 'react-native-country-picker-modal';
 import { AuthContext } from '../../screens/Auth/AuthScreen';
 import { PhoneContainer, PhonePrefix } from '../../styles/authSteps';
 import { COLORS } from '../../functions/constants';
 import i18n from 'i18next';
+import { CountryPicker } from 'react-native-country-codes-picker';
 
 function PhoneNumber() {
   const { data, handleChangeObject } = useContext(AuthContext);
