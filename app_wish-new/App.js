@@ -21,6 +21,7 @@ SplashScreen.preventAutoHideAsync()
   .catch(console.warn);
 
 function App() {
+  alert('HELP ME!');
   const [loadingApp, setLoadingApp] = React.useState(false);
   console.disableYellowBox = true;
 
