@@ -2,7 +2,7 @@
   "expo": {
     "name": "getwish",
     "slug": "getwish",
-    "version": "1.0.17",
+    "version": "1.1",
     "jsEngine": "hermes",
     "orientation": "portrait",
     "icon": "./src/assets/icon.png",
@@ -40,7 +40,7 @@
         "NSCameraUsageDescription": "This app requires access to the camera to take photos to upload your profile photo.",
         "NSPhotoLibraryUsageDescription": "This app requires access to the photo library to upload your photo to the your posts."
       },
-      "buildNumber": "2.4"
+      "buildNumber": "1"
     },
     "extra": {
       "eas": {
