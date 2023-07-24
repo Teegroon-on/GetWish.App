@@ -96,5 +96,5 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-plugin-react-native": "^4.0.0"
   },
-  "private": true,
+  "private": true
 }

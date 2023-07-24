@@ -23,7 +23,7 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.wish_list",
-      "versionCode": 4,
+      "versionCode": 5,
       "permissions": ["CAMERA", "READ_EXTERNAL_STORAGE", "WRITE_EXTERNAL_STORAGE"]
     },
     "web": {
@@ -35,7 +35,7 @@
         "NSCameraUsageDescription": "This app requires access to the camera to take photos to upload your profile photo.",
         "NSPhotoLibraryUsageDescription": "This app requires access to the photo library to upload your photo to the your posts.",
       },
-      "buildNumber": "2.1"
+      "buildNumber": "2.2"
     },
     "extra": {
       "eas": {
