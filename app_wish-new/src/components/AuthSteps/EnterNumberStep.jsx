@@ -52,7 +52,7 @@ function EnterNumberStep({ isChangePhone }) {
         }>
           {tosText[0]}
           <TextOfferPurple>
-              {'TESThere'}
+            {tosText[1]}
           </TextOfferPurple>
         </TextOffer>
       )}
