@@ -37,7 +37,9 @@ function EnterCodeStepTimer() {
           <TimerTexts>{t('auth_resendCode')}</TimerTexts>
           <TimerNumber>
             0:
-            {seconds}
+            {
+              seconds < 10? `0${seconds}` : seconds
+            }
           </TimerNumber>
         </TimerContainer>
       )
