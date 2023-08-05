@@ -54,6 +54,10 @@ function EnterNumberStep({ isChangePhone }) {
           <TextOfferPurple>
             {tosText[1]}
           </TextOfferPurple>
+          {tosText[2]}
+          <TextOfferPurple>
+            {tosText[3]}
+          </TextOfferPurple>
         </TextOffer>
       )}
       <AuthButton

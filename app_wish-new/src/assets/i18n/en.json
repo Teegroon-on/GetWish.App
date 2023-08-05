@@ -76,8 +76,10 @@
     "auth_nicknameAvailable": "Username is available",
     "auth_nicknameNotAvailable": "Unfortunately, this username is already in use",
     "auth_tos": [
-      "By clicking \"receive code\" you agree to the ",
-      "privacy policy and terms of use"
+      "By clicking \"receive code\" you agree to the \n",
+      "privacy policy ",
+      "and ",
+      "terms of use"
     ],
     "auth_codeWillBeSent": "You will be sent a verification code",
     "auth_resendCode": "Resend code",

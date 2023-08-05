@@ -85,9 +85,10 @@ export const PhonePrefix = styled.Text`
 `;
 
 export const TextOffer = styled.Text`
+  font-family: 'Nunito';
   font-weight: 300;
   font-size: 12px;
-  line-height: 16px;
+  line-height: 17px;
   color: #7C82A5;
   max-width: 312px;
   margin-top: 119px;
@@ -97,6 +98,8 @@ export const TextOffer = styled.Text`
 
 export const TextOfferPurple = styled.Text`
   color: #8424FF;
+  font-size: 12px;
+  font-weight: 400;
 `;
 
 export const Codes = styled.View`
