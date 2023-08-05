@@ -36,7 +36,8 @@ export const HeaderTouchableHighlight = styled.TouchableHighlight`
 export const AuthStepContent = styled.View`
   display: flex;
   align-items: center;
-  margin-top: ${(props) => props.mt}px;
+  height: 100%;
+  padding-top: ${(props) => props.mt}px;
 `;
 
 export const AuthStepCancelText = styled.Text`
