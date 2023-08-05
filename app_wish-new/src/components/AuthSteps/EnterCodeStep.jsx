@@ -108,7 +108,7 @@ function EnterCodeStep({ isChangePhone }) {
               keyboardType="numeric"
               style={styles.inputStyle}
               autoFocus
-              selectionColor={"black"} // This will make the cursor black on Android
+              caretHidden
             />
             {[0, 1, 2, 3].map((index) => (
               <CodeElement key={index}>
