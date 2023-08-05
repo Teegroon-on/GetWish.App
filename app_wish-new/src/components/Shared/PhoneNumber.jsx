@@ -8,7 +8,6 @@ import { PhoneContainer, PhonePrefix } from '../../styles/authSteps';
 import { COLORS } from '../../functions/constants';
 import arrowDown from '../../assets/images/icons/arrow-down.png';
 
-
 function PhoneNumber() {
   const { data, handleChangeObject } = useContext(AuthContext);
   const [state, setState] = React.useState({});
@@ -17,6 +16,10 @@ function PhoneNumber() {
   const [visible, setVisible] = React.useState(false);
   const [mask, setMask] = React.useState('999 999 99 99');
   const language = i18n.language === 'ru' ? 'rus' : 'common';
+
+  React.useEffect(() => {
+    handleChangeObject('maskLength', mask.split(' ').join('').length);
+  }, [mask])
 
   const getMaskByCountryCode = (cca2) => {
     const masks = {
@@ -341,29 +344,30 @@ function PhoneNumber() {
 
   return (
     <PhoneContainer>
-      {/*<CountryPicker
+      <CountryPicker
         {...{
           countryCode,
           onSelect,
           withCallingCode: true,
           translation: language,
-          withFilter: true,
           visible,
+          withFlagButton: false,
+          withFilter: false,
           filterProps: {
             autoFocus: true,
             placeholder: i18n.t('enterCountry'),
             placeholderTextColor: '#000',
             style: {
-              opacity: '50%',
-              height: 40,
+              height: 40
             },
           },
         }}
-      />*/}
+      />
       <TouchableOpacity
         style={styles.numberRegionSelector}
+        onPress={openModal}
       >
-        <PhonePrefix onPress={openModal} fz={Platform.OS === 'android' ? 27 : 30}>{country ? `+${country.callingCode}` : '+7'}</PhonePrefix>
+        <PhonePrefix fz={Platform.OS === 'android' ? 27 : 30}>{country ? `+${country.callingCode}` : '+7'}</PhonePrefix>
         <Image
           source={arrowDown}
         />

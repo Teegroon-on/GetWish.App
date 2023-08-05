@@ -21,6 +21,7 @@ function AuthScreen(props) {
   const [data, setData] = React.useState({
     id: '',
     phoneNumber: '',
+    maskLength: 10,
     codes: '',
     username: '',
     countryCode: '',

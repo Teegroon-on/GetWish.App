@@ -14,6 +14,7 @@ import { COLORS } from '../../functions/constants';
 function EnterNumberStep({ isChangePhone }) {
   const { data, onNextStep } = useContext(AuthContext);
   const [loading, setLoading] = React.useState(false);
+  const [disabledNext, setDisabledNext] = React.useState(true);
   const [isBlocked, setIsBlocked] = React.useState(false);
   const onPressNumberStep = async () => {
     if (isBlocked) {
@@ -31,7 +32,11 @@ function EnterNumberStep({ isChangePhone }) {
 
   const t = useI18n();
 
-  const disabledNext = data.phoneNumber.split(' ').join('').length < 3;
+  React.useEffect(() => {
+    console.log(data.maskLength);
+    setDisabledNext(data.phoneNumber.split(' ').join('').length < data.maskLength);
+  }, [data.phoneNumber]);
+
   const tosText = t('auth_tos', { returnObjects: true });
 
   return (
