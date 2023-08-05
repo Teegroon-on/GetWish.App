@@ -81,7 +81,7 @@ export const PhoneContainer = styled.View`
 export const PhonePrefix = styled.Text`
   color: #1A1A1A;
   font-size: ${(props) => props.fz}px;
-  margin-right: 12px;
+  margin-right: 6px;
 `;
 
 export const TextOffer = styled.Text`
