@@ -352,7 +352,7 @@ function PhoneNumber() {
           translation: language,
           visible,
           withFlagButton: false,
-          withFilter: false,
+          withFilter: true,
           filterProps: {
             autoFocus: true,
             placeholder: i18n.t('enterCountry'),
@@ -396,7 +396,7 @@ const styles = StyleSheet.create({
     height: 41,
     color: COLORS.black,
     fontWeight: '600',
-    fontSize: Platform.OS === 'android' ? 27 : 30,
+    fontSize: Platform.OS === 'android' ? 28 : 30,
     display: 'flex',
     alignItems: 'center',
   },
