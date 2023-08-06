@@ -31,6 +31,7 @@ i18n.use(initReactI18next)
     cacheUserLanguage: Function.prototype,
   })
   .init({
+    compatibilityJSON: 'v3',
     defaultNS,
     resources: translations,
     fallbackLng: fallbackLang,
