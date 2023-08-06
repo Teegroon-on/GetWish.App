@@ -124,7 +124,7 @@ export const CodeElement = styled.View`
 `;
 
 export const CodePlaceholder = styled.View`
-        position: absolute;
+      position: absolute;
       align-self: center;
       align-content: center;
       left: 10px;
@@ -133,14 +133,6 @@ export const CodePlaceholder = styled.View`
       background: ${(props) => props.error || '#D4DAEC'};
       height: 10px;
       width: 10px;
-`;
-
-export const EnterCodeStepContainer = styled.View`
-    display: flex;
-    height: 335px;
-    width: 100%;
-    align-items: center;
-    flex-direction: column;
 `;
 
 export const EnterCodeStepBottom = styled.View`
@@ -210,23 +202,23 @@ export const CodeTextError = styled.Text`
 export const TimerContainer = styled.View`
     margin-top: 112px;
     display: flex;
-  font-family: 'Nunito';
-  flex-direction: row;
-  align-items: center;
-    margin-bottom: 46px;
+    font-family: 'Nunito';
+    flex-direction: row;
+    align-items: center;
     width: 199px;
     height: 21px;
 `;
 export const TimerTexts = styled.Text`
-  font-weight: bold;
+  font-family: 'Nunito';
+  font-weight: bold; 
   font-size: 15px;
-  line-height: 20px;
   color: #D4DAEC;
 `;
 
 export const TimerTextSendAgain = styled.Text`
-  font-weight: bold;
-  font-size: 15px;
+  font-family: 'Nunito';
+  font-weight: 700;
+  font-size: 16px;
   line-height: 20px;
   align-self: center; 
   width: 100%;
@@ -235,9 +227,10 @@ export const TimerTextSendAgain = styled.Text`
 `;
 
 export const TimerNumber = styled.Text`
+  font-family: 'Nunito';
   font-weight: 600;
-  font-size: 15px;
+  font-size: 14px;
   line-height: 20px;
-  margin-left: 12px;
+  margin-left: 14px;
   color: #1A1A1A;
 `;
