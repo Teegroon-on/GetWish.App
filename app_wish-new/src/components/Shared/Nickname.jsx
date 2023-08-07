@@ -101,6 +101,7 @@ function Nickname(props) {
         value={value}
         onChangeText={handleChangeTextInput}
         autoCapitalize="none"
+        selectionColor="#8424FF"
         style={{ textTransform: 'lowercase' }}
         autoCorrect={false}
       />

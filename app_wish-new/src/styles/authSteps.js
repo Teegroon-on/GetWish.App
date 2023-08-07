@@ -89,9 +89,9 @@ export const PhonePrefix = styled.Text`
 
 export const TextOffer = styled.Text`
   font-family: 'Nunito';
+  align-self: center;
   font-weight: 300;
   font-size: 12px;
-  line-height: 17px;
   color: #7C82A5;
   max-width: 312px;
   margin-top: 119px;
@@ -101,8 +101,16 @@ export const TextOffer = styled.Text`
 
 export const TextOfferPurple = styled.Text`
   color: #8424FF;
+  font-family: 'Nunito';
   font-size: 12px;
   font-weight: 400;
+`;
+
+export const AvailableCharactersTextPurple = styled.Text`
+  color: #8424FF;
+  font-family: 'Nunito';
+  font-size: 13px;
+  font-weight: 800;
 `;
 
 export const Codes = styled.View`
@@ -188,11 +196,11 @@ export const ChangeNicknamePurple = styled.Text`
 `;
 
 export const EnterNickNameInfo = styled.Text`
+  font-family: 'Nunito';
     max-width: 325px;
     align-self: center;
     text-align: center;
     font-size: 13px;
-    line-height: 18px;
     color: #7C82A5;
     margin-bottom: 20px;
 `;
