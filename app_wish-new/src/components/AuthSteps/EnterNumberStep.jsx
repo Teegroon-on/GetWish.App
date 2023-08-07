@@ -33,7 +33,6 @@ function EnterNumberStep({ isChangePhone }) {
   const t = useI18n();
 
   React.useEffect(() => {
-    console.log(data.maskLength);
     setDisabledNext(data.phoneNumber.split(' ').join('').length < data.maskLength);
   }, [data.phoneNumber]);
 
