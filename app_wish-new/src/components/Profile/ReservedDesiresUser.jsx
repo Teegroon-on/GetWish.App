@@ -45,7 +45,9 @@ function ReservedDesiresUser({
         <Image
           source={el?.theme?.card ? { uri: el?.theme?.card } : require('../../assets/images/icons/users/theme.png')}
           alt="background"
-          style={{position: "absolute", width: "108%", height: "126%", resizeMode: "cover", borderRadius: "10px"}}
+          style={{
+            position: 'absolute', width: '108%', height: '126%', resizeMode: 'cover', borderRadius: 10
+          }}
         />
         <HStack justifyContent="space-between" width="100%">
           <ReservedDesiresUserTitle>
