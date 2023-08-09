@@ -42,17 +42,26 @@ const Stack = createStackNavigator();
 function MyStack() {
   return (
     <Stack.Navigator initialRouteName="MainProfile">
-      <Stack.Screen options={{ headerShown: false }} name="MainProfile" component={ProfileScreen}/>
-      <Stack.Screen options={{ headerShown: false }} name="ImageView" component={ImageView}/>
-      <Stack.Screen options={{ headerShown: false }} name="ShareScreen" component={ShareScreen}/>
-      <Stack.Screen options={{ headerShown: false }} name="ChangePhoneScreen"
-                    component={ChangePhoneScreen}/>
-      <Stack.Screen options={{ headerShown: false }} name="ChangeNicknameStep"
-                    component={ChangeNicknameStep}/>
-      <Stack.Screen options={{ headerShown: false }} name="ReservWishList"
-                    component={ReservWishList}/>
-      <Stack.Screen options={{ headerShown: false }} name="Swiper" component={SwiperImage}/>
-      <Stack.Screen options={{ headerShown: false }} name="UserWishList" component={UserWishList}/>
+      <Stack.Screen options={{ headerShown: false }} name="MainProfile" component={ProfileScreen} />
+      <Stack.Screen options={{ headerShown: false }} name="ImageView" component={ImageView} />
+      <Stack.Screen options={{ headerShown: false }} name="ShareScreen" component={ShareScreen} />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="ChangePhoneScreen"
+        component={ChangePhoneScreen}
+      />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="ChangeNicknameStep"
+        component={ChangeNicknameStep}
+      />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="ReservWishList"
+        component={ReservWishList}
+      />
+      <Stack.Screen options={{ headerShown: false }} name="Swiper" component={SwiperImage} />
+      <Stack.Screen options={{ headerShown: false }} name="UserWishList" component={UserWishList} />
     </Stack.Navigator>
   );
 }
@@ -160,30 +169,49 @@ function PostsStack() {
 
   return (
     <Stack.Navigator initialRouteName="PostsUser">
-      <Stack.Screen options={{ headerShown: false }} name="PostsUser" component={Posts}/>
+      <Stack.Screen options={{ headerShown: false }} name="PostsUser" component={Posts} />
       <Stack.Screen
         options={{ headerShown: false }}
         name="AddPost"
         component={AddPost}
       />
-      <Stack.Screen options={{
-        header: (navigation) => <Header search={!!search} morePress={showMore} more
-                                        title={oneUser?.username} navigation={navigation}/>
-      }} name="UserProfile" component={UserProfile}/>
-      <Stack.Screen options={{ headerShown: false }} name="Swiper" component={SwiperImage}/>
       <Stack.Screen
-        options={{ header: (navigation) => <Header title={t('my_posts')} navigation={navigation}/> }}
-        name="MyPost" component={MyPost}/>
+        options={{
+          header: (navigation) => (
+            <Header
+              search={!!search}
+              morePress={showMore}
+              more
+              title={oneUser?.username}
+              navigation={navigation}
+            />
+          )
+        }}
+        name="UserProfile"
+        component={UserProfile}
+      />
+      <Stack.Screen options={{ headerShown: false }} name="Swiper" component={SwiperImage} />
       <Stack.Screen
-        options={{ header: (navigation) => <Header title={t('commentText')} navigation={navigation}/> }}
-        name="Comments" component={Comments}/>
+        options={{ header: (navigation) => <Header title={t('my_posts')} navigation={navigation} /> }}
+        name="MyPost"
+        component={MyPost}
+      />
       <Stack.Screen
-        options={{ header: (navigation) => <Header title={t('likeText')} navigation={navigation}/> }}
-        name="Likes" component={Likes}/>
-      <Stack.Screen options={{ headerShown: false }} name="ShareScreen" component={ShareScreen}/>
+        options={{ header: (navigation) => <Header title={t('commentText')} navigation={navigation} /> }}
+        name="Comments"
+        component={Comments}
+      />
       <Stack.Screen
-        options={{ header: (navigation) => <Header title={t('profile_posts')} navigation={navigation}/> }}
-        name="UserPostOther" component={PostUserOthere}/>
+        options={{ header: (navigation) => <Header title={t('likeText')} navigation={navigation} /> }}
+        name="Likes"
+        component={Likes}
+      />
+      <Stack.Screen options={{ headerShown: false }} name="ShareScreen" component={ShareScreen} />
+      <Stack.Screen
+        options={{ header: (navigation) => <Header title={t('profile_posts')} navigation={navigation} /> }}
+        name="UserPostOther"
+        component={PostUserOthere}
+      />
     </Stack.Navigator>
   );
 }
@@ -294,38 +322,59 @@ function FriendsStack({ navigation }) {
 
   return (
     <Stack.Navigator initialRouteName="UserFriends">
-      <Stack.Screen options={{ headerShown: false }} name="UserFriends" component={Friends}/>
-      <Stack.Screen options={{
-        header: (navigation) => <Header
-          backHandler={Object.keys(goToCommentsSelector)?.length ? () => {
-            navigation.navigation.navigate('Posts', {
-              screen: 'Comments',
-              params: {
-                ...goToCommentsSelector
-              }
-            });
-            dispatch({
-              type: GO_BACK_TO_COMMENTS,
-              payload: {}
-            });
-          } : null} search={!!search} morePress={showMore} more title={oneUser?.username}
-          navigation={navigation}/>
-      }} name="UserProfile" component={UserProfile}/>
-      <Stack.Screen options={{
-        header: (navigation) => <Header avatar title={t('profile_posts')} navigation={navigation}/>
-      }} name="UserPost" component={UserPost}/>
-      <Stack.Screen options={{ headerShown: false }} name="UserWishList" component={UserWishList}/>
-      <Stack.Screen options={{ headerShown: false }} name="ShareScreen" component={ShareScreen}/>
-      <Stack.Screen options={{ headerShown: false }} name="Swiper" component={SwiperImage}/>
+      <Stack.Screen options={{ headerShown: false }} name="UserFriends" component={Friends} />
       <Stack.Screen
-        options={{ header: (navigation) => <Header title={t('profile_posts')} navigation={navigation}/> }}
-        name="UserPostOther" component={PostUserOthere}/>
+        options={{
+          header: (navigation) => (
+            <Header
+              backHandler={Object.keys(goToCommentsSelector)?.length ? () => {
+                navigation.navigation.navigate('Posts', {
+                  screen: 'Comments',
+                  params: {
+                    ...goToCommentsSelector
+                  }
+                });
+                dispatch({
+                  type: GO_BACK_TO_COMMENTS,
+                  payload: {}
+                });
+              } : null}
+              search={!!search}
+              morePress={showMore}
+              more
+              title={oneUser?.username}
+              navigation={navigation}
+            />
+          )
+        }}
+        name="UserProfile"
+        component={UserProfile}
+      />
       <Stack.Screen
-        options={{ header: (navigation) => <Header title={t('commentText')} navigation={navigation}/> }}
-        name="Comments" component={Comments}/>
+        options={{
+          header: (navigation) => <Header avatar title={t('profile_posts')} navigation={navigation} />
+        }}
+        name="UserPost"
+        component={UserPost}
+      />
+      <Stack.Screen options={{ headerShown: false }} name="UserWishList" component={UserWishList} />
+      <Stack.Screen options={{ headerShown: false }} name="ShareScreen" component={ShareScreen} />
+      <Stack.Screen options={{ headerShown: false }} name="Swiper" component={SwiperImage} />
       <Stack.Screen
-        options={{ header: (navigation) => <Header title={t('likeText')} navigation={navigation}/> }}
-        name="Likes" component={Likes}/>
+        options={{ header: (navigation) => <Header title={t('profile_posts')} navigation={navigation} /> }}
+        name="UserPostOther"
+        component={PostUserOthere}
+      />
+      <Stack.Screen
+        options={{ header: (navigation) => <Header title={t('commentText')} navigation={navigation} /> }}
+        name="Comments"
+        component={Comments}
+      />
+      <Stack.Screen
+        options={{ header: (navigation) => <Header title={t('likeText')} navigation={navigation} /> }}
+        name="Likes"
+        component={Likes}
+      />
 
     </Stack.Navigator>
   );
@@ -335,42 +384,69 @@ function WishListStack() {
   const t = useI18n();
   return (
     <Stack.Navigator initialRouteName="WishList">
-      <Stack.Screen options={{ headerShown: false }} name="ImageView" component={ImageView}/>
-      <Stack.Screen options={{ headerShown: false }} name="ImageViewPost"
-                    component={ImageViewPost}/>
-      <Stack.Screen options={{
-        header: (navigation) => <Header archive cancel={false} title={t('wishlists')}
-                                        navigation={navigation}/>
-      }} name="WishList" component={ProfileWishList}/>
-      <Stack.Screen options={{
-        header: (navigation) => <Header title={t('wishlists_archived')} navigation={navigation}/>
-      }} name="ArchiveWishList" component={ArchiveWishList}/>
+      <Stack.Screen options={{ headerShown: false }} name="ImageView" component={ImageView} />
+      <Stack.Screen options={{ headerShown: false }} name="ImageViewPost" component={ImageViewPost} />
+      <Stack.Screen
+        options={{
+          header: (navigation) => (
+            <Header
+              archive
+              cancel={false}
+              title={t('wishlists')}
+              navigation={navigation}
+            />
+          )
+        }}
+        name="WishList"
+        component={ProfileWishList}
+      />
+      <Stack.Screen
+        options={{
+          header: (navigation) => <Header title={t('wishlists_archived')} navigation={navigation} />
+        }}
+        name="ArchiveWishList"
+        component={ArchiveWishList}
+      />
       <Stack.Screen
         options={{
           header: (navigation) => {
             const idEdit = navigation?.route?.params?.id;
-            return <Header cancelText cancel={false}
-                           title={idEdit ? t('edit') : t('wishlists_create_new')}
-                           navigation={navigation}/>;
+            return (
+              <Header
+                cancelText
+                cancel={false}
+                title={idEdit ? t('edit') : t('wishlists_create_new')}
+                navigation={navigation}
+              />
+            );
           },
           tabBarStyle: { display: 'none' }
         }}
         name="AddWishList"
         component={AddWishList}
       />
-      <Stack.Screen options={{
-        headerShown: false,
-        tabBarStyle: { display: 'none' }
-      }} name="ShareScreen" component={ShareScreen}/>
-      <Stack.Screen options={{ headerShown: false }} name="UserWishList" component={UserWishList}/>
-      <Stack.Screen options={{ headerShown: false }} name="Swiper" component={SwiperImage}/>
+      <Stack.Screen
+        options={{
+          headerShown: false,
+          tabBarStyle: { display: 'none' }
+        }}
+        name="ShareScreen"
+        component={ShareScreen}
+      />
+      <Stack.Screen options={{ headerShown: false }} name="UserWishList" component={UserWishList} />
+      <Stack.Screen options={{ headerShown: false }} name="Swiper" component={SwiperImage} />
       <Stack.Screen
         options={{
           header: (navigation) => {
             const idEdit = navigation?.route?.params?.id;
-            return <Header cancelText cancel={false}
-                           title={idEdit ? t('edit') : t('wishlists_add_wish')}
-                           navigation={navigation}/>;
+            return (
+              <Header
+                cancelText
+                cancel={false}
+                title={idEdit ? t('edit') : t('wishlists_add_wish')}
+                navigation={navigation}
+              />
+            );
           },
           tabBarStyle: { display: 'none' }
         }}
@@ -483,11 +559,17 @@ function TabStack() {
               );
             }
 
-            return <Image resizeMode="cover" style={{
-              width: 24,
-              height: 20,
-              position: 'relative'
-            }} source={require('../../assets/images/icons/bottom/friends.png')}/>;
+            return (
+              <Image
+                resizeMode="cover"
+                style={{
+                  width: 24,
+                  height: 20,
+                  position: 'relative'
+                }}
+                source={require('../../assets/images/icons/bottom/friends.png')}
+              />
+            );
 
           }
         };
@@ -540,7 +622,7 @@ function TabStack() {
 function App() {
   return (
     <NavigationContainer ref={navigationRef}>
-      <TabStack/>
+      <TabStack />
     </NavigationContainer>
   );
 }
