@@ -3,8 +3,9 @@ import {
   Avatar, Text, FlatList, HStack, Pressable, Image
 } from 'native-base';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
+import { SafeAreaView } from 'react-native';
 import { COLORS } from '../../../functions/constants';
-import {useI18n} from "../../../i18n/i18n";
+import { useI18n } from '../../../i18n/i18n';
 
 function SwipebleELement({ item, deleteFriendFromLocalHandler }) {
   const [swipeable, setSwipeable] = React.useState(false);
@@ -19,7 +20,7 @@ function SwipebleELement({ item, deleteFriendFromLocalHandler }) {
       enableTrackpadTwoFingerGesture
       onSwipeableWillClose={onSwipeableWillCloseHandler}
       onSwipeableWillOpen={onSwipeableWillOpenHandler}
-      renderRightActions={() => RightElement({ item, deleteFriendFromLocalHandler })}
+      /*renderRightActions={() => RightElement({ item, deleteFriendFromLocalHandler })}*/
     >
       <HStack
         _dark={{
@@ -81,21 +82,26 @@ function ListFriendMinusElement({
   data, deleteFriendFromLocalHandler
 }) {
   return (
-    <FlatList
-      style={{
-        width: '100%',
-        zIndex: -1
-      }}
-      marginTop="15px"
-      zIndex={9}
-      data={data}
-      renderItem={({
-        item
-      }) => (
-        <SwipebleELement deleteFriendFromLocalHandler={deleteFriendFromLocalHandler} item={item} />
-      )}
-      keyExtractor={(item) => item.id}
-    />
+    <SafeAreaView style={{ flex: 1 }}>
+      <FlatList
+        style={{
+          width: '100%',
+          zIndex: -1
+        }}
+        marginTop="15px"
+        zIndex={9}
+        data={data}
+        renderItem={({
+          item
+        }) => (
+          <SwipebleELement
+            deleteFriendFromLocalHandler={deleteFriendFromLocalHandler}
+            item={item}
+          />
+        )}
+        keyExtractor={(item) => item.id}
+      />
+    </SafeAreaView>
   );
 }
 
