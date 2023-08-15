@@ -13,7 +13,7 @@ import { AuthContext } from '../../screens/Auth/AuthScreen';
 import { logout } from '../../redux/actions/authActions';
 import { navigateAction } from '../../functions/NavigationService';
 import { COLORS } from '../../functions/constants';
-import { useI18n } from '../../i18n/i18n';
+import {useI18n} from "../../i18n/i18n";
 
 function AuthStep({
   title, text, children, maxWidth, mt, back, exit, isChangePhone, isFirstStep
@@ -29,38 +29,37 @@ function AuthStep({
     navigateAction('MainProfile');
   };
 
-  const t = useI18n();
+  const t = useI18n()
 
   return (
-    <KeyboardAwareScrollView
-      enableOnAndroid={false}
-      style={{ backgroundColor: COLORS.white, flex: 1 }}
-      contentContainerStyle={{ flex: 1 }}
+    <KeyboardAwareScrollView enableOnAndroid={false}
+                             style={{ backgroundColor: COLORS.white, flex: 1 }}
+                             contentContainerStyle={{ flex: 1 }}
     >
       <AuthStepContainer>
         <AuthStepContent mt={mt}>
           {back && (
-          <AuthStepHeader jc="flex-start">
-            <TouchableHighlight underlayColor="none" onPress={onPrevStep}>
-              <Image style={{ width: 9, height: 16 }} source={require('../../assets/images/icons/arrow.png')} />
-            </TouchableHighlight>
-          </AuthStepHeader>
+            <AuthStepHeader jc="flex-start">
+              <TouchableHighlight underlayColor="none" onPress={onPrevStep}>
+                <Image style={{ width: 9, height: 16 }} source={require('../../assets/images/icons/arrow.png')} />
+              </TouchableHighlight>
+            </AuthStepHeader>
           )}
           {isChangePhone && isFirstStep && (
-          <AuthStepHeader mb={58} jc="flex-start">
-            <TouchableHighlight underlayColor="none" onPress={goToMain}>
-              <AuthStepCancelText>
-                {t('cancel')}
-              </AuthStepCancelText>
-            </TouchableHighlight>
-          </AuthStepHeader>
+            <AuthStepHeader mb={58} jc="flex-start">
+              <TouchableHighlight underlayColor="none" onPress={goToMain}>
+                <AuthStepCancelText>
+                  {t('cancel')}
+                </AuthStepCancelText>
+              </TouchableHighlight>
+            </AuthStepHeader>
           )}
           {exit && (
-          <AuthStepHeader jc="flex-end">
-            <HeaderTouchableHighlight onPress={handleLogout} underlayColor="none">
-              <ExitImage source={require('../../assets/images/icons/header/exit.png')} />
-            </HeaderTouchableHighlight>
-          </AuthStepHeader>
+            <AuthStepHeader jc="flex-end">
+              <HeaderTouchableHighlight onPress={handleLogout} underlayColor="none">
+                <ExitImage source={require('../../assets/images/icons/header/exit.png')} />
+              </HeaderTouchableHighlight>
+            </AuthStepHeader>
           )}
           <AuthStepContentHeader mw={maxWidth}>
             <AuthStepContentHeaderTitle>{title}</AuthStepContentHeaderTitle>

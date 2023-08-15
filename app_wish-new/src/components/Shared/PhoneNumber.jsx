@@ -8,6 +8,7 @@ import { PhoneContainer, PhonePrefix } from '../../styles/authSteps';
 import { COLORS } from '../../functions/constants';
 import arrowDown from '../../assets/images/icons/arrow-down.png';
 
+
 function PhoneNumber() {
   const { data, handleChangeObject } = useContext(AuthContext);
   const [state, setState] = React.useState({});
@@ -16,10 +17,6 @@ function PhoneNumber() {
   const [visible, setVisible] = React.useState(false);
   const [mask, setMask] = React.useState('999 999 99 99');
   const language = i18n.language === 'ru' ? 'rus' : 'common';
-
-  React.useEffect(() => {
-    handleChangeObject('maskLength', mask.split(' ').join('').length);
-  }, [mask])
 
   const getMaskByCountryCode = (cca2) => {
     const masks = {
@@ -344,30 +341,29 @@ function PhoneNumber() {
 
   return (
     <PhoneContainer>
-      <CountryPicker
+      {/*<CountryPicker
         {...{
           countryCode,
           onSelect,
           withCallingCode: true,
           translation: language,
-          visible,
-          withFlagButton: false,
           withFilter: true,
+          visible,
           filterProps: {
             autoFocus: true,
             placeholder: i18n.t('enterCountry'),
             placeholderTextColor: '#000',
             style: {
-              height: 40
+              opacity: '50%',
+              height: 40,
             },
           },
         }}
-      />
+      />*/}
       <TouchableOpacity
         style={styles.numberRegionSelector}
-        onPress={openModal}
       >
-        <PhonePrefix fz={Platform.OS === 'android' ? 27 : 30}>{country ? `+${country.callingCode}` : '+7'}</PhonePrefix>
+        <PhonePrefix onPress={openModal} fz={Platform.OS === 'android' ? 27 : 30}>{country ? `+${country.callingCode}` : '+7'}</PhonePrefix>
         <Image
           source={arrowDown}
         />
@@ -396,7 +392,7 @@ const styles = StyleSheet.create({
     height: 41,
     color: COLORS.black,
     fontWeight: '600',
-    fontSize: Platform.OS === 'android' ? 28 : 30,
+    fontSize: Platform.OS === 'android' ? 27 : 30,
     display: 'flex',
     alignItems: 'center',
   },

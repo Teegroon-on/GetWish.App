@@ -39,7 +39,7 @@ function AuthButton({
         position: 'relative',
         ...style,
         ...(bxShadow
-            && { ...generateBoxShadowStyle(-2, -3, COLORS.purple, 1, 6, 3, COLORS.black) })
+          && { ...generateBoxShadowStyle(-2, -3, COLORS.purple, 1, 6, 3, COLORS.black) })
       }}
       _text={{
         color: '#8424FF'
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     width: 335,
     height: 50,
     paddingTop: 15,
-    paddingBottom: 13,
+    paddingBottom: 15,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center'

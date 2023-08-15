@@ -1,9 +1,6 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-import {
-  StyleSheet, TextInput, View, Text, TouchableWithoutFeedback, Platform
-} from 'react-native';
-import { KeyboardAvoidingView } from 'native-base';
+import { StyleSheet, TextInput, View, Text, TouchableWithoutFeedback } from 'react-native';
 import AuthStep from './AuthStep';
 import AuthButton from '../Shared/AuthButton';
 import { AuthContext } from '../../screens/Auth/AuthScreen';
@@ -21,7 +18,7 @@ import { navigateAction } from '../../functions/NavigationService';
 import useToasts from '../../hooks/useToast';
 import { updatePhone } from '../../redux/actions/userActions';
 import { COLORS } from '../../functions/constants';
-import { useI18n } from '../../i18n/i18n';
+import {useI18n} from "../../i18n/i18n";
 
 function EnterCodeStep({ isChangePhone }) {
   const {
@@ -81,6 +78,7 @@ function EnterCodeStep({ isChangePhone }) {
       position: 'absolute',
       color: '#ffffff',
       width: '100%',
+      paddingLeft: 5,
       height: '100%',
       fontWeight: '600',
     },
@@ -91,21 +89,15 @@ function EnterCodeStep({ isChangePhone }) {
       fontSize: 27,
       width: 30,
       height: 30,
+      paddingLeft: 5,
       marginTop: 0,
       textAlign: 'center',
     },
   });
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={{
-        backgroundColor: COLORS.white,
-        flex: 1,
-      }}
-      keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0}
-    >
-      <AuthStep back mt={44} maxWidth={276} text={t('auth_codeWasSend')} title={`+${data.countryCode} ${data.phoneNumber}`}>
+    <AuthStep back mt={44} maxWidth={276} text={t('auth_codeWasSend')} title={`+${data.countryCode} ${data.phoneNumber}`}>
+      <EnterCodeStepContainer>
         <TouchableWithoutFeedback onPress={() => textInputRef.current.focus()}>
           <Codes>
             <TextInput
@@ -122,29 +114,19 @@ function EnterCodeStep({ isChangePhone }) {
               <CodeElement key={index}>
                 {!codes[index] && <CodePlaceholder error={error && '#FFDEDE'} />}
                 <Text style={styles.codeBox}>
-                  {codes[index] || ''}
+                  {codes[index] || ""}
                 </Text>
               </CodeElement>
             ))}
           </Codes>
         </TouchableWithoutFeedback>
         {error && <CodeTextError>{t('auth_errorInvalidCode')}</CodeTextError>}
-        <EnterCodeStepTimer />
-        <View
-          style={{
-            position: 'absolute',
-            bottom: 31
-          }}
-        >
-          <AuthButton
-            onPress={onPressCodeStep}
-            active={!disabledNext}
-          >
-            {t('confirm')}
-          </AuthButton>
-        </View>
-      </AuthStep>
-    </KeyboardAvoidingView>
+        <EnterCodeStepBottom>
+          <EnterCodeStepTimer />
+          <AuthButton onPress={onPressCodeStep} active={!disabledNext}>{t('confirm')}</AuthButton>
+        </EnterCodeStepBottom>
+      </EnterCodeStepContainer>
+    </AuthStep>
   );
 }
 
