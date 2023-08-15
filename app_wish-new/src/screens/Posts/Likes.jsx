@@ -8,11 +8,13 @@ import LikesBody from '../../components/Posts/LikesBody';
 import useLoader from "../../hooks/useLoader";
 import {handleGoToUser} from "../../functions/helpers";
 import { useIsFocused } from '@react-navigation/native';
+import {useI18n} from "../../i18n/i18n";
 
 function Likes({ navigation, route: { params: { postId }, ...props } }) {
   const parent = navigation.getParent();
   const { start, stop, loading } = useLoader(true);
   const [data, setData] = React.useState([]);
+  const t = useI18n()
 
   React.useEffect(() => {
     (async function () {
