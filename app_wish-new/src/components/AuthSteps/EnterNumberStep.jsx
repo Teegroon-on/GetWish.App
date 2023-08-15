@@ -39,49 +39,36 @@ function EnterNumberStep({ isChangePhone }) {
   const tosText = t('auth_tos', { returnObjects: true });
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={{ backgroundColor: COLORS.white, flex: 1 }}
-      keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0}
-    >
-      <AuthStep
-        isFirstStep
-        isChangePhone={isChangePhone}
-        mt={isChangePhone ? 44 : 136}
-        maxWidth={266}
-        text={t('auth_codeWillBeSent')}
-        title={t('auth_enterPhoneTitle')}
+      <KeyboardAvoidingView
+          behavior={'none'}
+          style={{ backgroundColor: COLORS.white, flex: 1 }}
+          contentContainerStyle={{ flex: 1 }}
+          keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0}
       >
-        <PhoneNumber />
-        <View
-          style={{
-            position: 'absolute',
-            bottom: 31
-          }}
-        >
-          {!isChangePhone && (
-            <TextOffer onPress={() => Linking.openURL('https://doc-hosting.flycricket.io/getwish-privacy-policy/c947c99a-cbcb-4b82-ac58-878c67012c3e/privacy')}>
-              {tosText[0]}
-              <TextOfferPurple>
-                {tosText[1]}
-              </TextOfferPurple>
-              {tosText[2]}
-              <TextOfferPurple>
-                {tosText[3]}
-              </TextOfferPurple>
-            </TextOffer>
-          )}
-          <AuthButton
-            loading={loading}
-            style={{ marginTop: isChangePhone ? 100 : 0 }}
-            onPress={onPressNumberStep}
-            active={!disabledNext && !loading && !isBlocked}
-          >
-            {t('auth_getCode')}
-          </AuthButton>
-        </View>
-      </AuthStep>
-    </KeyboardAvoidingView>
+    <AuthStep isFirstStep isChangePhone={isChangePhone} mt={isChangePhone ? 44 : 136} maxWidth={266}
+              text={t('auth_codeWillBeSent')}
+              title={t('auth_enterPhoneTitle')}>
+      <PhoneNumber />
+      {!isChangePhone && (
+        <TextOffer  onPress={() =>
+          Linking.openURL('https://doc-hosting.flycricket.io/getwish-privacy-policy/c947c99a-cbcb-4b82-ac58-878c67012c3e/privacy')
+        }>
+          {tosText[0]}
+          <TextOfferPurple>
+              {'TESThere'}
+          </TextOfferPurple>
+        </TextOffer>
+      )}
+      <AuthButton
+        loading={loading}
+        style={{ marginTop: isChangePhone ? 100 : 0 }}
+        onPress={onPressNumberStep}
+        active={!disabledNext && !loading && !isBlocked}
+      >
+          {t('auth_getCode')}
+      </AuthButton>
+    </AuthStep>
+      </KeyboardAvoidingView>
   );
 }
 
