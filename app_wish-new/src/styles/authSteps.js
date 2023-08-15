@@ -56,8 +56,7 @@ export const AuthStepContentHeader = styled.View`
 `;
 
 export const AuthStepContentHeaderTitle = styled.Text`
-  font-family: 'Nunito';
-  font-weight: 700;
+  font-weight: bold;
   font-size: 20px;
   line-height: 27.28px;
   color: #1A1A1A;
@@ -67,7 +66,6 @@ export const AuthStepContentHeaderTitle = styled.Text`
 export const AuthStepContentHeaderText = styled.Text`
   margin-top: 7px;
   color: #7C82A5;
-  font-family: 'Nunito';
   font-size: 14px;
   line-height: 19px;
   text-align: center;
