@@ -16,3 +16,6 @@ export const StartTouchableOpacity = styled.TouchableOpacity`
   align-items: center;
 `;
 
+export const PhoneContainer = styled.View`
+  margin-top: 100px;
+`;

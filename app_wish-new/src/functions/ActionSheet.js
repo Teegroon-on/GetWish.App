@@ -5,9 +5,6 @@ import {
   goToAddWish, goToAddWishList, goToShareScreen, goToWishList
 } from './helpers';
 import { archiveWishList, deleteWish, deleteWishList } from '../redux/actions/wishListActions';
-import { deleteFriend } from '../redux/actions/userActions';
-import { GO_BACK_ID } from '../redux/constants/wishConstants';
-import store from '../redux';
 import { deleteComment, deletePost, reportPost } from '../redux/actions/postsActions';
 
 export class ActionSheets {
@@ -71,7 +68,7 @@ export class ActionSheets {
         await deleteComment(id);
         Toast.show({
           type: 'search',
-          text1: t('commentsDeleted'),
+          text1: this.t('commentsDeleted'),
           position: 'bottom',
           bottomOffset: 95
         });
@@ -195,7 +192,7 @@ export class ActionSheets {
               await archiveWishList(id, el?.private, el);
               Toast.show({
                 type: 'search',
-                text1: t('addToArchive'),
+                text1: this.t('addToArchive'),
                 position: 'bottom',
                 bottomOffset: 95
               })
@@ -232,8 +229,8 @@ export class ActionSheets {
               this.t('cancel'),
               this.t('delete')
             ],
-            title: t('deletePostQuestion'),
-            message: t('nonCancelable'),
+            title: this.t('deletePostQuestion'),
+            message: this.t('nonCancelable'),
             cancelButtonIndex: 0,
             userInterfaceStyle: 'dark'
           }, async (buttonIndexChild) => {
@@ -241,7 +238,7 @@ export class ActionSheets {
               await deletePost(id);
               Toast.show({
                 type: 'search',
-                text1: t('postDeleted'),
+                text1: this.t('postDeleted'),
                 position: 'bottom',
                 bottomOffset: 95
               })
