@@ -1,15 +1,12 @@
 import React, { useContext } from 'react';
-import {StyleSheet, InteractionManager, Platform, TouchableOpacity, Image} from 'react-native';
+import { StyleSheet, InteractionManager, Platform, TouchableOpacity } from 'react-native';
 import { MaskedTextInput } from 'react-native-mask-text';
-import i18n from 'i18next';
-import { CountryPicker } from 'react-native-country-picker-modal/lib/CountryPicker';
 import { AuthContext } from '../../screens/Auth/AuthScreen';
 import { PhoneContainer, PhonePrefix } from '../../styles/authSteps';
 import { COLORS } from '../../functions/constants';
-import arrowDown from '../../assets/images/icons/arrow-down.png';
-
-
-function PhoneNumber() {
+import i18n from 'i18next';
+import { CountryPicker } from 'react-native-country-picker-modal/lib/CountryPicker';
+function PhoneNumber({ onPressPhoneNumber }) {
   const { data, handleChangeObject } = useContext(AuthContext);
   const [state, setState] = React.useState({});
   const [countryCode, setCountryCode] = React.useState('RU');
@@ -340,34 +337,28 @@ function PhoneNumber() {
   }, [state]);
 
   return (
+    <TouchableOpacity>
     <PhoneContainer>
-      {/*<CountryPicker
-        {...{
-          countryCode,
-          onSelect,
-          withCallingCode: true,
-          translation: language,
-          withFilter: true,
-          visible,
-          filterProps: {
-            autoFocus: true,
-            placeholder: i18n.t('enterCountry'),
-            placeholderTextColor: '#000',
-            style: {
-              opacity: '50%',
-              height: 40,
+        <CountryPicker
+          {...{
+            countryCode,
+            onSelect,
+            withCallingCode: true,
+            translation: language,
+            withFilter: true,
+            visible,
+            filterProps: {
+              autoFocus: true,
+              placeholder: i18n.t('enterCountry'),
+              placeholderTextColor: '#000',
+              style: {
+                opacity: '50%',
+                height: 40,
+              },
             },
-          },
-        }}
-      />*/}
-      <TouchableOpacity
-        style={styles.numberRegionSelector}
-      >
-        <PhonePrefix onPress={openModal} fz={Platform.OS === 'android' ? 27 : 30}>{country ? `+${country.callingCode}` : '+7'}</PhonePrefix>
-        <Image
-          source={arrowDown}
+          }}
         />
-      </TouchableOpacity>
+      <PhonePrefix onPress={openModal} fz={Platform.OS === 'android' ? 27 : 30}>{country ? `+${country.callingCode}` : '+7'}</PhonePrefix>
       <MaskedTextInput
         mask={mask}
         ref={(input) => { setState(input); }}
@@ -375,12 +366,14 @@ function PhoneNumber() {
         onChangeText={(text) => {
           handleChangeObject('phoneNumber', text);
         }}
-        selectionColor="#8424FF"
         style={styles.input}
         keyboardType="numeric"
         autoFocus
+        onFocus={onPressPhoneNumber}
+        onBlur={onPressPhoneNumber}
       />
     </PhoneContainer>
+    </TouchableOpacity>
   );
 }
 
@@ -394,17 +387,8 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     fontSize: Platform.OS === 'android' ? 27 : 30,
     display: 'flex',
-    alignItems: 'center',
+    alignItems: 'center'
   },
-
-  numberRegionSelector: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginRight: 12
-  }
 });
-
-
 
 export default PhoneNumber;
