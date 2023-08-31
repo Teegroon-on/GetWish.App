@@ -31,7 +31,7 @@ import ListQueryElement from '../Friends/Lists/ListQueryElement';
 import ListRequestElement from '../Friends/Lists/ListRequestElement';
 import ListFriendsCheck from '../Friends/Lists/ListFriendsCheck';
 import { ShareContext } from '../../functions/context';
-import {useI18n} from "../../i18n/i18n";
+import { useI18n } from '../../i18n/i18n';
 
 function SearchHeader({
   cancel = false, title, setSelectedFriends, selectedFriends
@@ -175,7 +175,7 @@ function SearchHeader({
   }, []);
 
   const [state, setState] = React.useState({});
-  const t = useI18n()
+  const t = useI18n();
   React.useEffect(() => {
     if (state !== null && Object?.keys(state)?.length !== 0) {
       InteractionManager.runAfterInteractions(() => {
@@ -243,13 +243,13 @@ function SearchHeader({
             {debouncedTerm ? (
               <View marginTop="20px" display="flex" flexDirection="column">
                 {
-              loading ? <Spinner color="indigo.500" size="lg" /> : users?.length
+              loading ? <Spinner color="indigo.500" size="lg" /> : (users?.length || friendsSearch?.length)
                 ? (
                   <>
                     {isTabFriend() && friendsSearch?.length ? (
                       <View maxHeight="40%">
                         <Heading fontSize="15px" pb="19px" pl="20px" color={COLORS.gray}>
-                          {`${friendsSearch?.length} ${declOfNum(friendsSearch?.length, t('friend_plurals', {returnObjects: true}))}`}
+                          {`${friendsSearch?.length} ${declOfNum(friendsSearch?.length, t('friend_plurals', { returnObjects: true }))}`}
                         </Heading>
                         <ListFriendElement
                           add={false}
@@ -272,7 +272,7 @@ function SearchHeader({
                     {isTabQuery() && outgoingRequestSearch?.length ? (
                       <View maxHeight="40%">
                         <Heading fontSize="15px" pb="19px" pl="20px" color={COLORS.gray}>
-                          {`${allOutcoming()} ${declOfNum(allOutcoming(), t('friends_requestPlurals', {returnObjects: true}))}`}
+                          {`${allOutcoming()} ${declOfNum(allOutcoming(), t('friends_requestPlurals', { returnObjects: true }))}`}
                         </Heading>
                         <ListQueryElement
                           handleSearchPanel={handleSearchPanel}
@@ -284,7 +284,7 @@ function SearchHeader({
                     {isTabRequest() && incomingRequestSearch?.length ? (
                       <View maxHeight="40%">
                         <Heading fontSize="15px" pb="19px" pl="20px" color={COLORS.gray}>
-                          {`${allIncoming()} ${declOfNum(allIncoming(), t('friends_requestPlurals', {returnObjects: true}))}`}
+                          {`${allIncoming()} ${declOfNum(allIncoming(), t('friends_requestPlurals', { returnObjects: true }))}`}
                         </Heading>
                         <ListRequestElement
                           data={incomingRequestSearch}
