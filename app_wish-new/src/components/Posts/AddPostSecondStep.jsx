@@ -197,7 +197,6 @@ function AddPostSecondStep() {
   };
 
   const publicHandlerPost = async () => {
-    console.log('post post');
     if (id) {
       start();
       await updatePost(id, description).then(async () => {
