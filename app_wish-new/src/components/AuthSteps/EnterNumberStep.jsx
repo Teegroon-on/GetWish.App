@@ -56,8 +56,8 @@ function EnterNumberStep({ isChangePhone }) {
         text={t('auth_codeWillBeSent')}
         title={t('auth_enterPhoneTitle')}
       >
-          <PhoneNumber onPressPhoneNumber={numberClick}/>
-        <View style={!nubmerPress ? {marginTop: 230} : {marginTop: -25}}>
+        <PhoneNumber onPressPhoneNumber={numberClick} />
+        <View style={!nubmerPress ? { marginTop: '75%' } : { marginTop: -25 }}>
           {!isChangePhone && (
             <TextOffer onPress={() => Linking.openURL('https://doc-hosting.flycricket.io/getwish-privacy-policy/c947c99a-cbcb-4b82-ac58-878c67012c3e/privacy')}>
               {tosText[0]}
