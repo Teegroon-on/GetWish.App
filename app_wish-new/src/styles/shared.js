@@ -1,7 +1,7 @@
 import styled from 'styled-components/native/dist/styled-components.native.esm';
 
 export const ButtonAuthLabel = styled.Text`
-  font-family: 'Nunito-bold';
+  font-family: 'NunitoBold';
   color: #FFFFFF;
   font-size: 16px;
   font-weight: bold;
