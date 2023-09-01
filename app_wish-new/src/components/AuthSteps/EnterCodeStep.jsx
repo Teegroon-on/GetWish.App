@@ -27,7 +27,15 @@ function EnterCodeStep({ isChangePhone }) {
   const t = useI18n();
   const { show } = useToasts(2000, t('profile_phoneChanged'));
   const [codes, setCodes] = React.useState('');
+  const [numberPress, setNumberPress] = React.useState(false);
 
+  const numberClick = () => {
+    if (!numberPress) {
+      setNumberPress(true);
+    } else {
+      setNumberPress(false);
+    }
+  };
   const handleChange = (text) => {
     if (text.length <= 4) {
       setCodes(text);
@@ -108,6 +116,8 @@ function EnterCodeStep({ isChangePhone }) {
               keyboardType="numeric"
               style={styles.inputStyle}
               autoFocus
+              onFocus={numberClick}
+              onBlur={numberClick}
               caretHidden
             />
             {[0, 1, 2, 3].map((index) => (
@@ -121,9 +131,16 @@ function EnterCodeStep({ isChangePhone }) {
           </Codes>
         </TouchableWithoutFeedback>
         {error && <CodeTextError>{t('auth_errorInvalidCode')}</CodeTextError>}
-        <EnterCodeStepBottom>
+        <EnterCodeStepBottom
+          style={!numberPress ? { marginTop: '75%' } : { marginTop: -25 }}
+        >
           <EnterCodeStepTimer />
-          <AuthButton onPress={onPressCodeStep} active={!disabledNext}>{t('confirm')}</AuthButton>
+          <AuthButton
+            onPress={onPressCodeStep}
+            active={!disabledNext}
+          >
+            {t('confirm')}
+          </AuthButton>
         </EnterCodeStepBottom>
       </EnterCodeStepContainer>
     </AuthStep>
