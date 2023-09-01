@@ -131,10 +131,10 @@ function EnterCodeStep({ isChangePhone }) {
           </Codes>
         </TouchableWithoutFeedback>
         {error && <CodeTextError>{t('auth_errorInvalidCode')}</CodeTextError>}
+        <EnterCodeStepTimer />
         <EnterCodeStepBottom
           style={!numberPress ? { marginTop: '75%' } : { marginTop: -25 }}
         >
-          <EnterCodeStepTimer />
           <AuthButton
             onPress={onPressCodeStep}
             active={!disabledNext}

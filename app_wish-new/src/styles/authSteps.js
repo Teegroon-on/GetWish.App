@@ -205,7 +205,7 @@ export const CodeTextError = styled.Text`
 `;
 
 export const TimerContainer = styled.View`
-  margin-top: 112px;
+  margin-top: 100px;
   display: flex;
   font-family: 'Nunito';
   flex-direction: row;
