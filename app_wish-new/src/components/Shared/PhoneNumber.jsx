@@ -371,6 +371,7 @@ function PhoneNumber({ onPressPhoneNumber }) {
         autoFocus
         onFocus={onPressPhoneNumber}
         onBlur={onPressPhoneNumber}
+        selectionColor="#8424FF"
       />
     </PhoneContainer>
     </TouchableOpacity>
