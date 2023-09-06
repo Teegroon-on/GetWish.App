@@ -27,7 +27,7 @@ import { SET_SEARCH, SET_SEARCH_DATA } from '../../redux/constants/userConstants
 import useLoader from '../../hooks/useLoader';
 import ListFriendsCheck from '../Friends/Lists/ListFriendsCheck';
 import { ShareContext } from '../../functions/context';
-import {useI18n} from "../../i18n/i18n";
+import { useI18n } from '../../i18n/i18n';
 
 function SearchHeaderShare({
   cancel = false, title, setSelectedFriends, selectedFriends
@@ -135,7 +135,7 @@ function SearchHeaderShare({
 
   const [state, setState] = React.useState({});
 
-  const t = useI18n()
+  const t = useI18n();
 
   React.useEffect(() => {
     if (state !== null && Object?.keys(state)?.length !== 0) {
@@ -192,7 +192,7 @@ function SearchHeaderShare({
             {debouncedTerm ? (
               <View marginTop="20px" display="flex" flexDirection="column">
                 {
-              loading ? <Spinner color="indigo.500" size="lg" /> : users?.length
+              loading ? <Spinner color="indigo.500" size="lg" /> : (users?.length || friendsSearch?.length)
                 ? (
                   <>
                     {friendsSearch?.length ? (
