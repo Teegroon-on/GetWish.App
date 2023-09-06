@@ -8,17 +8,12 @@ import {
   NicknameBottom, NicknameContainer, NicknameLabel, NicknameLabelText
 } from '../../styles/shared';
 import { Nickname } from '../index';
-import {
-  AvailableCharactersTextPurple,
-  EnterNickNameInfo,
-  EnterNickNameStepContainer,
-  TextOfferPurple
-} from '../../styles/authSteps';
+import { EnterNickNameInfo, EnterNickNameStepContainer, TextOfferPurple } from '../../styles/authSteps';
 import { AuthContext } from '../../screens/Auth/AuthScreen';
 import { userCRUD } from '../../http/CRUD';
 import { SET_AUTH, SET_USER_INFO } from '../../redux/constants/userConstants';
 import { changeUserInfo } from '../../redux/actions/authActions';
-import { useI18n } from '../../i18n/i18n';
+import {useI18n} from "../../i18n/i18n";
 
 function EnterNicknameStep() {
   const {
@@ -29,7 +24,7 @@ function EnterNicknameStep() {
   const [availability, setAvailability] = React.useState(false);
   const [state, setState] = React.useState({});
 
-  const t = useI18n();
+  const t = useI18n()
 
   const nicknameValidationSchema = yup.object().shape({
     nickName: yup
@@ -127,21 +122,16 @@ function EnterNicknameStep() {
               <NicknameBottom>
                 <EnterNickNameInfo>
                   {t('auth_nicknameChars')}
-                  {' '}
-                  <AvailableCharactersTextPurple>a-z</AvailableCharactersTextPurple>
+                  <TextOfferPurple>a-z</TextOfferPurple>
                   ,
-                  {' '}
-                  <AvailableCharactersTextPurple>0-9</AvailableCharactersTextPurple>
+                  <TextOfferPurple>0-9</TextOfferPurple>
                   ,
-                  {' '}
-                  <AvailableCharactersTextPurple>.</AvailableCharactersTextPurple>
+                  <TextOfferPurple>.</TextOfferPurple>
                   {' '}
                   и
-                  {' '}
-                  <AvailableCharactersTextPurple>_</AvailableCharactersTextPurple>
+                  <TextOfferPurple>_</TextOfferPurple>
                   {' '}
                   .
-                  {'\n'}
                   {t('auth_nicknameLength')}
                 </EnterNickNameInfo>
                 <AuthButton onPress={onHandleRegistration} active={canRegistration}>
