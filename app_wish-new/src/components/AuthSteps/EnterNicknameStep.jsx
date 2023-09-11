@@ -7,13 +7,18 @@ import AuthButton from '../Shared/AuthButton';
 import {
   NicknameBottom, NicknameContainer, NicknameLabel, NicknameLabelText
 } from '../../styles/shared';
-import { Nickname } from '../index';
-import { EnterNickNameInfo, EnterNickNameStepContainer, TextOfferPurple } from '../../styles/authSteps';
+import {
+  AvailableCharactersTextPurple,
+  EnterNickNameInfo,
+  EnterNickNameStepContainer,
+  TextOfferPurple
+} from '../../styles/authSteps';
 import { AuthContext } from '../../screens/Auth/AuthScreen';
 import { userCRUD } from '../../http/CRUD';
 import { SET_AUTH, SET_USER_INFO } from '../../redux/constants/userConstants';
 import { changeUserInfo } from '../../redux/actions/authActions';
-import {useI18n} from "../../i18n/i18n";
+import { useI18n } from '../../i18n/i18n';
+import { Nickname } from '../index';
 
 function EnterNicknameStep() {
   const {
@@ -24,7 +29,7 @@ function EnterNicknameStep() {
   const [availability, setAvailability] = React.useState(false);
   const [state, setState] = React.useState({});
 
-  const t = useI18n()
+  const t = useI18n();
 
   const nicknameValidationSchema = yup.object().shape({
     nickName: yup
@@ -42,6 +47,7 @@ function EnterNicknameStep() {
       setLoading(true);
       try {
         const { data: user } = await userCRUD.search();
+        console.log(user);
         if (user) {
           await dispatch({ type: SET_USER_INFO, payload: user });
           if (user?.username) {
@@ -84,7 +90,6 @@ function EnterNicknameStep() {
       });
     }
   }, [state]);
-
   if (loading) {
     return <Text>{t('loading')}</Text>;
   }
@@ -109,7 +114,9 @@ function EnterNicknameStep() {
           return (
             <EnterNickNameStepContainer>
               <NicknameContainer>
-                <NicknameLabel><NicknameLabelText>{t('nickname')}</NicknameLabelText></NicknameLabel>
+                <NicknameLabel>
+                  <NicknameLabelText>{t('nickname')}</NicknameLabelText>
+                </NicknameLabel>
                 <Field
                   setState={setState}
                   setCanRegistration={setCanRegistration}
@@ -122,16 +129,21 @@ function EnterNicknameStep() {
               <NicknameBottom>
                 <EnterNickNameInfo>
                   {t('auth_nicknameChars')}
-                  <TextOfferPurple>a-z</TextOfferPurple>
+                  {' '}
+                  <AvailableCharactersTextPurple>a-z</AvailableCharactersTextPurple>
                   ,
-                  <TextOfferPurple>0-9</TextOfferPurple>
+                  {' '}
+                  <AvailableCharactersTextPurple>0-9</AvailableCharactersTextPurple>
                   ,
-                  <TextOfferPurple>.</TextOfferPurple>
+                  {' '}
+                  <AvailableCharactersTextPurple>.</AvailableCharactersTextPurple>
                   {' '}
                   и
-                  <TextOfferPurple>_</TextOfferPurple>
+                  {' '}
+                  <AvailableCharactersTextPurple>_</AvailableCharactersTextPurple>
                   {' '}
                   .
+                  {'\n'}
                   {t('auth_nicknameLength')}
                 </EnterNickNameInfo>
                 <AuthButton onPress={onHandleRegistration} active={canRegistration}>

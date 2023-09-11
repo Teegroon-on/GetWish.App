@@ -323,6 +323,10 @@ function PhoneNumber({ onPressPhoneNumber }) {
     setMask(getMaskByCountryCode(country.cca2));
   };
 
+  React.useEffect(() => {
+    handleChangeObject('maskLength', mask.split(' ').join('').length);
+  }, [mask]);
+
   const openModal = () => {
     setVisible(true);
   };
@@ -371,6 +375,7 @@ function PhoneNumber({ onPressPhoneNumber }) {
         autoFocus
         onFocus={onPressPhoneNumber}
         onBlur={onPressPhoneNumber}
+        selectionColor="#8424FF"
       />
     </PhoneContainer>
     </TouchableOpacity>

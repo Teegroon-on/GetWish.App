@@ -55,6 +55,7 @@ export const AuthStepContentHeader = styled.View`
 `;
 
 export const AuthStepContentHeaderTitle = styled.Text`
+  font-family: 'Nunito-bold';
   font-weight: bold;
   font-size: 20px;
   line-height: 27.28px;
@@ -63,6 +64,7 @@ export const AuthStepContentHeaderTitle = styled.Text`
 `;
 
 export const AuthStepContentHeaderText = styled.Text`
+  font-family: 'Nunito';
   margin-top: 7px;
   color: #7C82A5;
   font-size: 14px;
@@ -150,7 +152,7 @@ export const EnterCodeStepBottom = styled.View`
 
 export const EnterNickNameStepContainer = styled.View`
   display: flex;
-  width: 100%;
+  width: 90%;
   flex-direction: column;
   height: 272px;
 `;
@@ -181,10 +183,19 @@ export const ChangeNicknamePurple = styled.Text`
   font-weight: 600;
   line-height: 18px;
   color: #8424FF;
+`;
 
+export const AvailableCharactersTextPurple = styled.Text`
+  font-family: 'Nunito-bold';
+  font-weight: bold;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 18px;
+  color: #8424FF;
 `;
 
 export const EnterNickNameInfo = styled.Text`
+  font-family: 'Nunito';
   max-width: 325px;
   align-self: center;
   text-align: center;
@@ -205,7 +216,7 @@ export const CodeTextError = styled.Text`
 `;
 
 export const TimerContainer = styled.View`
-  margin-top: 112px;
+  margin-top: 100px;
   display: flex;
   font-family: 'Nunito';
   flex-direction: row;

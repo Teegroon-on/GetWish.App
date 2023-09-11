@@ -24,6 +24,7 @@ function AuthScreen(props) {
     codes: '',
     username: '',
     countryCode: '',
+    maskLength: 10
   });
 
   const Step = StepsComponents[step];
