@@ -7,7 +7,6 @@ import AuthButton from '../Shared/AuthButton';
 import {
   NicknameBottom, NicknameContainer, NicknameLabel, NicknameLabelText
 } from '../../styles/shared';
-import { Nickname } from '../index';
 import {
   AvailableCharactersTextPurple,
   EnterNickNameInfo,
@@ -19,6 +18,7 @@ import { userCRUD } from '../../http/CRUD';
 import { SET_AUTH, SET_USER_INFO } from '../../redux/constants/userConstants';
 import { changeUserInfo } from '../../redux/actions/authActions';
 import { useI18n } from '../../i18n/i18n';
+import { Nickname } from '../index';
 
 function EnterNicknameStep() {
   const {
@@ -89,6 +89,7 @@ function EnterNicknameStep() {
       });
     }
   }, [state]);
+
 
   if (loading) {
     return <Text>{t('loading')}</Text>;
