@@ -18,7 +18,7 @@ function ChooseTheme({ active, setActive, themes }) {
   };
 
   return (
-    <ScrollView minHeight="68px" maxHeight="68px" marginTop="20px" marginBottom="24px" horizontal>
+    <ScrollView minHeight="68px" maxHeight="68px" marginTop="20px" marginBottom="24px" horizontal showsHorizontalScrollIndicator={false}>
       <HStack>
         {themes?.map((el) => {
           return (
