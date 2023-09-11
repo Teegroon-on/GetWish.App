@@ -47,6 +47,7 @@ function EnterNicknameStep() {
       setLoading(true);
       try {
         const { data: user } = await userCRUD.search();
+        console.log(user);
         if (user) {
           await dispatch({ type: SET_USER_INFO, payload: user });
           if (user?.username) {
@@ -89,8 +90,6 @@ function EnterNicknameStep() {
       });
     }
   }, [state]);
-
-
   if (loading) {
     return <Text>{t('loading')}</Text>;
   }
@@ -115,7 +114,9 @@ function EnterNicknameStep() {
           return (
             <EnterNickNameStepContainer>
               <NicknameContainer>
-                <NicknameLabel><NicknameLabelText>{t('nickname')}</NicknameLabelText></NicknameLabel>
+                <NicknameLabel>
+                  <NicknameLabelText>{t('nickname')}</NicknameLabelText>
+                </NicknameLabel>
                 <Field
                   setState={setState}
                   setCanRegistration={setCanRegistration}

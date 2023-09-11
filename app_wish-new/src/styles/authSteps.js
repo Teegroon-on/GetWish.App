@@ -181,7 +181,14 @@ export const ChangeNicknamePurple = styled.Text`
   font-weight: 600;
   line-height: 18px;
   color: #8424FF;
+`;
 
+export const AvailableCharactersTextPurple = styled.Text`
+  font-family: 'Nunito';
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 18px;
+  color: #8424FF;
 `;
 
 export const EnterNickNameInfo = styled.Text`
