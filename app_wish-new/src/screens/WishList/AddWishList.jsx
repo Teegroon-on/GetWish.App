@@ -5,7 +5,7 @@ import {
 } from 'native-base';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useDispatch, useSelector } from 'react-redux';
-import { Dimensions } from 'react-native';
+import { Dimensions, TouchableOpacity } from 'react-native';
 import Toast from 'react-native-toast-message';
 import { WishListContainer, WishListPrivateText } from '../../styles/wishlist';
 import ChooseTheme from './Add/ChooseTheme';
@@ -224,7 +224,20 @@ function AddWishList({ navigation, ...props }) {
                   {selectedFriends?.length ? t('availableFor') : t('availableWho')}
                   :
                 </Text>
-                <Text onPress={goToShareScreenHandle} width="66px" fontSize={15} color={COLORS.purple} fontFamily="NunitoBold">{t('select')}</Text>
+                <TouchableOpacity
+                  onPress={goToShareScreenHandle}
+                  width="66px"
+                  activeOpacity={1}
+                  underlayColor="none"
+                >
+                  <Text
+                    fontSize={15}
+                    color={COLORS.purple}
+                    fontFamily="NunitoBold"
+                  >
+                    {t('select')}
+                  </Text>
+                </TouchableOpacity>
               </View>
               {selectedFriends?.length ? (
                 <ListFriendsMinus

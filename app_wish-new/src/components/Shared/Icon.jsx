@@ -5,7 +5,11 @@ import { ProfileHeader } from '../../styles/profile';
 
 function Icon({ handlePressIcon, source, ...props }) {
   return (
-    <TouchableHighlight underlayColor="none" onPress={handlePressIcon}>
+    <TouchableHighlight
+      activeOpacity={1}
+      underlayColor="none"
+      onPress={handlePressIcon}
+    >
       <ProfileHeader>
         <Image source={source} {...props} />
       </ProfileHeader>

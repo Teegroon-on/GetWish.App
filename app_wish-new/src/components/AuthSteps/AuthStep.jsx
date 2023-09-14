@@ -40,14 +40,22 @@ function AuthStep({
         <AuthStepContent mt={mt}>
           {back && (
             <AuthStepHeader jc="flex-start">
-              <TouchableHighlight underlayColor="none" onPress={onPrevStep}>
+              <TouchableHighlight
+                activeOpacity={1}
+                underlayColor="none"
+                onPress={onPrevStep}
+              >
                 <Image style={{ width: 9, height: 16 }} source={require('../../assets/images/icons/arrow.png')} />
               </TouchableHighlight>
             </AuthStepHeader>
           )}
           {isChangePhone && isFirstStep && (
             <AuthStepHeader mb={58} jc="flex-start">
-              <TouchableHighlight underlayColor="none" onPress={goToMain}>
+              <TouchableHighlight
+                activeOpacity={1}
+                underlayColor="none"
+                onPress={goToMain}
+              >
                 <AuthStepCancelText>
                   {t('cancel')}
                 </AuthStepCancelText>
@@ -56,7 +64,11 @@ function AuthStep({
           )}
           {exit && (
             <AuthStepHeader jc="flex-end">
-              <HeaderTouchableHighlight onPress={handleLogout} underlayColor="none">
+              <HeaderTouchableHighlight
+                onPress={handleLogout}
+                activeOpacity={1}
+                underlayColor="none"
+              >
                 <ExitImage source={require('../../assets/images/icons/header/exit.png')} />
               </HeaderTouchableHighlight>
             </AuthStepHeader>

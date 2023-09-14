@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Text } from 'native-base';
-import {Animated, Platform} from 'react-native';
+import { Animated, Platform, TouchableOpacity } from 'react-native';
 import {
   HeaderArchive,
   HeaderArrow,
@@ -65,17 +65,24 @@ function Header({
       </HeaderPressable>
       )}
       {cancelText && (
-        <Text
-          color={COLORS.purple}
-          left={19}
-          top="56px"
-          position="absolute"
+        <TouchableOpacity
+          style={{
+            position: 'absolute',
+            left: 19,
+            bottom: 10
+          }}
           onPress={handlePressable}
-          fontSize={16}
-          fontWeight={600}
+          activeOpacity={1}
+          underlayColor="none"
         >
-          {t('cancel')}
-        </Text>
+          <Text
+            color={COLORS.purple}
+            fontSize={16}
+            fontWeight={600}
+          >
+            {t('cancel')}
+          </Text>
+        </TouchableOpacity>
       )}
       <HeaderTitle numberOfLines={1}>{title}</HeaderTitle>
       {more && (
@@ -94,17 +101,24 @@ function Header({
       </HeaderPressableArchive>
       )}
       {nextHandler && (
-      <Text
-        color={nextDisabled ? COLORS.extralightGray4 : COLORS.purple}
-        right="20px"
-        top="56px"
-        position="absolute"
-        onPress={nextHandler}
-        fontSize={16}
-        fontWeight={600}
-      >
-        {t('nextButtonText')}
-      </Text>
+        <TouchableOpacity
+          style={{
+            position: 'absolute',
+            right: 20,
+            bottom: 10
+          }}
+          onPress={nextHandler}
+          activeOpacity={1}
+          underlayColor="none"
+        >
+          <Text
+            color={nextDisabled ? COLORS.extralightGray4 : COLORS.purple}
+            fontSize={16}
+            fontWeight={600}
+          >
+            {t('nextButtonText')}
+          </Text>
+        </TouchableOpacity>
       )}
     </HeaderRow>
   );

@@ -121,7 +121,12 @@ function ProfileAvatar({ ...props }) {
   return (
     <Avatar>
       <Icon {...props} source={userInfo?.avatar ? { uri: `${userInfo?.avatar}` } : require('../../assets/images/icons/profile/avatar.png')} />
-      <AvatarTouchableHighlight style={Platform.OS === 'android' && androidShadow} onPress={handleChangeAvatar} underlayColor="none">
+      <AvatarTouchableHighlight
+        style={Platform.OS === 'android' && androidShadow}
+        onPress={handleChangeAvatar}
+        activeOpacity={1}
+        underlayColor="none"
+      >
         <Image style={{ height: 15, width: 18 }} source={require('../../assets/images/icons/profile/edit.png')} />
       </AvatarTouchableHighlight>
     </Avatar>

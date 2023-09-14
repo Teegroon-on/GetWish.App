@@ -324,9 +324,6 @@ export const ShareScreenHeader = styled.View`
 `;
 
 export const ShareScreenCancelText = styled.Text`
-  position: absolute;
-  left: 20px;
-  top: 55px;
   font-family: 'Nunito';
   font-weight: 600;
   font-size: 16px;

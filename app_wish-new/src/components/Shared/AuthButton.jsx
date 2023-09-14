@@ -19,7 +19,12 @@ function AuthButton({
           resizeMode="cover"
           style={{ ...styles.linearGradient, ...style }}
         >
-          <TouchableHighlight style={{ ...styles.higlight, ...higlightStyle }} underlayColor="none" onPress={onPress}>
+          <TouchableHighlight
+            style={{ ...styles.higlight, ...higlightStyle }}
+            activeOpacity={1}
+            underlayColor="none"
+            onPress={onPress}
+          >
             <ButtonAuthLabel>{children}</ButtonAuthLabel>
           </TouchableHighlight>
         </ImageBackground>
@@ -27,38 +32,42 @@ function AuthButton({
     );
   }
   return (
-    <Box
-      style={{
-        height: 46,
-        maxWidth: 162.5,
-        display: 'flex',
-        borderRadius: 12,
-        alignItems: 'center',
-        justifyContent: 'center',
-        flex: 1,
-        position: 'relative',
-        ...style,
-        ...(bxShadow
-          && { ...generateBoxShadowStyle(-2, -3, COLORS.purple, 1, 6, 3, COLORS.black) })
-      }}
-      _text={{
-        color: '#8424FF'
-      }}
+    <TouchableHighlight
+      onPress={onPress}
+      activeOpacity={1}
+      underlayColor="none"
     >
-      <Image
-        width="100%"
-        borderRadius={12}
-        height={style?.height || 46}
-        source={require('../../assets/images/icons/Buttons.png')}
-        resizeMode="cover"
-        style={{ ...higlightStyle }}
-      />
-      <ButtonAuthLabelVariant2
-        onPress={onPress}
+      <Box
+        style={{
+          height: 46,
+          maxWidth: 162.5,
+          display: 'flex',
+          borderRadius: 12,
+          alignItems: 'center',
+          justifyContent: 'center',
+          flex: 1,
+          position: 'relative',
+          ...style,
+          ...(bxShadow
+            && { ...generateBoxShadowStyle(-2, -3, COLORS.purple, 1, 6, 3, COLORS.black) })
+        }}
+        _text={{
+          color: '#8424FF'
+        }}
       >
-        {text}
-      </ButtonAuthLabelVariant2>
-    </Box>
+        <Image
+          width="100%"
+          borderRadius={12}
+          height={style?.height || 46}
+          source={require('../../assets/images/icons/Buttons.png')}
+          resizeMode="cover"
+          style={{ ...higlightStyle }}
+        />
+        <ButtonAuthLabelVariant2>
+          {text}
+        </ButtonAuthLabelVariant2>
+      </Box>
+    </TouchableHighlight>
   );
 
 }

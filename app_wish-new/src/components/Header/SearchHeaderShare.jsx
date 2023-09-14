@@ -6,7 +6,7 @@ import {
 } from 'native-base';
 import { useDispatch, useSelector } from 'react-redux';
 import Toast from 'react-native-toast-message';
-import { InteractionManager } from 'react-native';
+import { InteractionManager, TouchableOpacity } from 'react-native';
 import {
   ModalCancelText,
   SearchScreenImage,
@@ -152,7 +152,20 @@ function SearchHeaderShare({
   return (
     <>
       <ShareScreenHeader>
-        {cancel && <ShareScreenCancelText onPress={goBack}>Отмена</ShareScreenCancelText>}
+        {cancel && (
+          <TouchableOpacity
+            style={{
+              position: 'absolute',
+              left: 20,
+              bottom: 10
+            }}
+            onPress={goBack}
+            activeOpacity={1}
+            underlayColor="none"
+          >
+            <ShareScreenCancelText>Отмена</ShareScreenCancelText>
+          </TouchableOpacity>
+        )}
         <ShareScreenTitle>{title}</ShareScreenTitle>
         <ShareScreenPressable onPress={() => setOpenPanel(true)}>
           <ShareScreenImage source={require('../../assets/images/icons/profile/desires/search.png')} />
@@ -187,7 +200,13 @@ function SearchHeaderShare({
                 fontSize={16}
                 placeholder={t('friends_searchPlaceholder')}
               />
-              <ModalCancelText onPress={() => setOpenPanel(false)}>Отмена</ModalCancelText>
+              <TouchableOpacity
+                onPress={() => setOpenPanel(false)}
+                activeOpacity={1}
+                underlayColor="none"
+              >
+                <ModalCancelText>Отмена</ModalCancelText>
+              </TouchableOpacity>
             </ModalContent>
             {debouncedTerm ? (
               <View marginTop="20px" display="flex" flexDirection="column">
